@@ -35,11 +35,11 @@ public List<Card> step() {
 	Card card2 = this.player2.getCard();
 	this.warPile.add(card1);
 	this.warPile.add(card2);
-	this.gameStatus = "Player 1: " + "\n" + "Current Card " + card1 + "\n" + "Unplayed Pile: " + this.player1.unplayedPile.size() + "\n" + "War Pile: " + \
-		this.warPile.size() + "\n" + "Winnings Pile: " + this.player1.winningsPile.size() + 
-		"\n" + "\n" + "Player 2: " + "\n" + "Current Card " + card2 + "\n" + \
-		"Unplayed Pile: " + this.player2.unplayedPile.size() + "\n" + "War Pile: " + \
-	this.warPile.size() + "\n" + "Winnings Pile: " + this.player2.winningsPile.size();
+	this.gameStatus = "Player 1: " + "\n" + "Current Card " + card1 + "\n" + "Unplayed Pile: " + this.player1.unplayedCount() + "\n" + "War Pile: " + 
+		this.warPile.size() + "\n" + "Winnings Pile: " + this.player1.winningsCount() + 
+		"\n" + "\n" + "Player 2: " + "\n" + "Current Card " + card2 + "\n" + 
+		"Unplayed Pile: " + this.player2.unplayedCount() + "\n" + "War Pile: " + 
+	this.warPile.size() + "\n" + "Winnings Pile: " + this.player2.winningsCount();
 	List<Card> cards = new ArrayList<Card>();
 	cards.add(card1);
 	cards.add(card2);
@@ -75,7 +75,7 @@ public String winner() {
 		}
 	}
 	else {
-		; 
+		return "Game isn't over"; 
 	}
 }
 }

@@ -26,7 +26,7 @@ public void addToUnplayedPile(Card card) {
 * Adds card to the player's winning pile
 * @param card
 */
-public void addtoWinningsPile(Card card) {
+public void addToWinningsPile(Card card) {
 	this.winnings.add(card);
 }
 	
