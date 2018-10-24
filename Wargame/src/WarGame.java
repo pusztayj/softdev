@@ -3,10 +3,10 @@ import java.util.*;
 public class WarGame {
 
 // string, deal, step, transfer cards (From war to winning - private), winner
-	private Player player1;
-	private Player player2;
+	public Player player1;
+	public Player player2;
 	private List<Card>  warPile;
-	private String gameStatus;
+	public String gameStatus;
 	private Deck deck;
 	
 	
@@ -50,7 +50,7 @@ public List<Card> step() {
  * Transfers cards from the war pile to the player's pile
  * @param player
  */
-private void transferCards(Player player) {
+public void transferCards(Player player) {
 	while(!this.warPile.isEmpty()) {
 		player.addToWinningsPile(this.warPile.remove(this.warPile.size()));
 	}
