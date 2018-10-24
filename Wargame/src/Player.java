@@ -29,7 +29,7 @@ public void addToUnplayedPile(Card card) {
 public void addToWinningsPile(Card card) {
 	this.winnings.add(card);
 }
-	
+
 /**
 * Removes and returns a card from the player's unplayed pile
 * @return the removed card
@@ -39,7 +39,15 @@ public Card getCard() {
 	this.unplayed.remove(0);
 	return remove_card;
 }
-	
+
+/**
+ * Returns top card in player's unplayed pile
+ * @return top card
+ */
+public Card seeCard() {
+	return this.unplayed.get(0);
+}
+
 /**
 * Returns True if the player's unplyaed pile is empty or False otherwise
 * @return True or False 
