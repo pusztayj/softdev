@@ -3,14 +3,19 @@ import java.util.*;
 public class WarGame {
 
 // string, deal, step, transfer cards (From war to winning - private), winner
-	private Player player1 = new Player();
-	private Player player2 = new Player();
-	private List<Card>  warPile = new ArrayList<Card>();
-	private String gameStatus = "";
-	private Deck deck = new Deck();
+	private Player player1;
+	private Player player2;
+	private List<Card>  warPile;
+	private String gameStatus;
+	private Deck deck;
 	
 	
 	WarGame(){
+		player1 = new Player();
+		player2 = new Player();
+		warPile = new ArrayList<Card>();
+		gameStatus = "";
+		deck = new Deck();
 		this.deck.shuffle();
 	}
 /**
@@ -25,7 +30,7 @@ public void deal() {
 /**
  * Makes one move in the game, and returns the two cards played
  */
-public void step() {
+public List<Card> step() {
 	Card card1 = this.player1.getCard();
 	Card card2 = this.player2.getCard();
 	this.warPile.add(card1);
@@ -35,6 +40,10 @@ public void step() {
 		"\n" + "\n" + "Player 2: " + "\n" + "Current Card " + card2 + "\n" + \
 		"Unplayed Pile: " + this.player2.unplayedPile.size() + "\n" + "War Pile: " + \
 	this.warPile.size() + "\n" + "Winnings Pile: " + this.player2.winningsPile.size();
+	List<Card> cards = new ArrayList<Card>();
+	cards.add(card1);
+	cards.add(card2);
+	return cards;
 	
 }
 /**

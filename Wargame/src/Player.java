@@ -60,4 +60,8 @@ public Boolean isDone() {
 public int winningsCount() {
 	return this.winnings.size();
 }
+
+public int unplayedCount() {
+	return this.unplayed.size();
+}
 }
