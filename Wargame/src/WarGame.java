@@ -65,5 +65,8 @@ public String winner() {
 			return "The game ends in a tie!\n";
 		}
 	}
+	else {
+		; 
+	}
 }
 }
