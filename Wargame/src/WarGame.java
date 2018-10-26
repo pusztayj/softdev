@@ -6,7 +6,6 @@ public class WarGame {
 	private Player player1;
 	private Player player2;
 	private List<Card>  warPile;
-	private String gameStatus;
 	private Deck deck;
 	private int moveCount;
 	
@@ -15,11 +14,19 @@ public class WarGame {
 		player1 = new Player();
 		player2 = new Player();
 		warPile = new ArrayList<Card>();
-		gameStatus = "";
-		moveCount = 1;
+		moveCount = 0;
 		deck = new Deck();
 		this.deck.shuffle();
-
+		this.deal();
+	}
+	
+	public void reset() {
+		player1 = new Player();
+		player2 = new Player();
+		warPile = new ArrayList<Card>();
+		moveCount = 0;
+		deck = new Deck();
+		this.deck.shuffle();
 		this.deal();
 	}
 	/**
@@ -69,9 +76,23 @@ public class WarGame {
 		else if (card2.getRank() > card1.getRank()) {
 			this.transferCards(this.player2);
 		}else {
-			System.out.println("It's a tie!\n");
+			;
 		}
 	}
+	/**
+	 * Gets the card being played by player1
+	 */
+	public Card getCard1() {
+		return this.player1.seeCard();
+	}
+	
+	/**
+	 * Gets the card being played by player2
+	 */
+	public Card getCard2() {
+		return this.player2.seeCard();
+	}
+	
 	/**
 	 * Transfers cards from the war pile to the player's pile
 	 * @param player

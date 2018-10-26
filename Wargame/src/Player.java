@@ -7,7 +7,8 @@ public class Player {
 // Sets up the player's unplayed and winnings pile.
 	
 	private List<Card>  unplayed;
-	private List<Card>  winnings; 
+	private List<Card>  winnings;
+	private Card currentCard;
 	
 	
 	Player(){
@@ -37,6 +38,7 @@ public void addToWinningsPile(Card card) {
 public Card getCard() {
 	Card remove_card = this.unplayed.get(0);
 	this.unplayed.remove(0);
+	this.currentCard = remove_card;
 	return remove_card;
 }
 
@@ -45,11 +47,12 @@ public Card getCard() {
  * @return top card
  */
 public Card seeCard() {
-	return this.unplayed.get(0);
+	//return this.unplayed.get(0);
+	return this.currentCard;
 }
 
 /**
-* Returns True if the player's unplyaed pile is empty or False otherwise
+* Returns True if the player's unplayed pile is empty or False otherwise
 * @return True or False 
 */
 public Boolean isDone() {

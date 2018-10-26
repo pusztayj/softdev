@@ -9,10 +9,10 @@ import javax.swing.JFrame;
 public class GUIApp{
 
     public static void main(String[] args){
-        final Deck deck = new Deck();
-        final JFrame view = new WarGUI(deck);
+        final WarGame game = new WarGame();
+        final JFrame view = new WarView(game);
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setSize(200, 200);
+        view.setSize(600, 400);
         view.setVisible(true);
     }
 }

@@ -20,7 +20,8 @@ public class TestGame {
 	}
 	
 	public static void nextMove() {
-		System.out.println(game.toString());
+
 		game.step();
+		System.out.println(game.toString());
 	}
 }

@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 public class WarGUI extends JFrame{
 
     private Deck deck;
+    private WarGame game;
 
     public WarGUI(Deck deck){
         this.deck = deck;
+        this.game = game;
         this.setTitle("The Game of War");
 	    JPanel northPanel = new JPanel(new GridLayout(2, 1));
 		
@@ -25,8 +27,11 @@ public class WarGUI extends JFrame{
 	    
         CardPanel westPanel = new CardPanel();
         CardPanel eastPanel = new CardPanel();
-        JButton button = new JButton("Deal");
-        button.addActionListener(new ActionListener(){
+	    
+	    JPanel buttonPanel = new JPanel (new GridLayout(1,2));
+        JButton button1 = new JButton("Move");
+        JButton button2 = new JButton("New Game");
+        button1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (! deck.isEmpty()){
                     Card card = deck.deal();
@@ -35,6 +40,9 @@ public class WarGUI extends JFrame{
                     eastPanel.setCard(card);
                 }
             }});
+	    buttonPanel.add(button1);
+	    buttonPanel.add(button2);
+
         JTextField gameStatus = new JTextField(" ");
         westPanel.setPreferredSize(new Dimension(80, 80));
         westPanel.setMaximumSize(westPanel.getPreferredSize());
@@ -43,10 +51,20 @@ public class WarGUI extends JFrame{
         Container c = getContentPane();
         c.add(northPanel, BorderLayout.NORTH);
         c.add(westPanel, BorderLayout.WEST);
-        c.add(button, BorderLayout.SOUTH);
+        c.add(buttonPanel, BorderLayout.SOUTH);
         c.add(gameStatus, BorderLayout.CENTER);
         c.add(eastPanel, BorderLayout.EAST);
     }
+    
+    public void move(){
+    	this.game.step();
+    	
+    //step
+    //grab
+    //tostring
+    //display
+    //	if 
+}
 }
 
 /*public class WarGUI extends JFrame{
