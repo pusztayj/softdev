@@ -1,15 +1,26 @@
 import java.util.*;
 
+/**
+ * A WarGame.java object represents the model for playing a game of war
+ * with two players
+ * @author pusztayj
+ * @author dot
+ * @author babikr
+ * @author brandl
+ * @version 1.0
+ */
 public class WarGame {
 
-// string, deal, step, transfer cards (From war to winning - private), winner
 	private Player player1;
 	private Player player2;
 	private List<Card>  warPile;
 	private Deck deck;
 	private int moveCount;
-	
-	
+
+	/**
+	 * Sets the game by creating the players and deck
+   * and deals the deck between the two players
+	 */
 	WarGame(){
 		player1 = new Player();
 		player2 = new Player();
@@ -19,7 +30,11 @@ public class WarGame {
 		this.deck.shuffle();
 		this.deal();
 	}
-	
+
+	/**
+	 * Resets the game by constructing new players
+   * and deals a new deck to the two players
+	 */
 	public void reset() {
 		player1 = new Player();
 		player2 = new Player();
@@ -30,20 +45,21 @@ public class WarGame {
 		this.deal();
 	}
 	/**
-	 * returns String format of WarGame	
+	 * returns String format of WarGame
+	 * @return the string represetnation of the game state
 	 */
 	public String toString() {
 		Card card1 = this.player1.seeCard();
 		Card card2 = this.player2.seeCard();
-		return "Player 1: " + "\n" + "Current Card: " + card1 + "\n" + "Unplayed Pile: " + this.player1.unplayedCount() + "\n" + "War Pile: " + 
-				this.warPile.size() + "\n" + "Winnings Pile: " + this.player1.winningsCount() + 
-				"\n" + "\n" + "Player 2: " + "\n" + "Current Card: " + card2 + "\n" + 
-				"Unplayed Pile: " + this.player2.unplayedCount() + "\n" + "War Pile: " + 
+		return "Player 1: " + "\n" + "Current Card: " + card1 + "\n" + "Unplayed Pile: " + this.player1.unplayedCount() + "\n" + "War Pile: " +
+				this.warPile.size() + "\n" + "Winnings Pile: " + this.player1.winningsCount() +
+				"\n" + "\n" + "Player 2: " + "\n" + "Current Card: " + card2 + "\n" +
+				"Unplayed Pile: " + this.player2.unplayedCount() + "\n" + "War Pile: " +
 			    this.warPile.size() + "\n" + "Winnings Pile: " + this.player2.winningsCount() + "\n\n" +
 				"Move Count: " + this.getMoveCount() + "\n";
-		        
+
 	}
-	
+
 	/**
 	 * Returns number of moves in game
 	 * @return integer moveCount
@@ -51,7 +67,7 @@ public class WarGame {
 	public int getMoveCount() {
 		return this.moveCount;
 	}
-	
+
 	/**
 	 * Deals 26 cards to each player
 	 */
@@ -81,29 +97,31 @@ public class WarGame {
 	}
 	/**
 	 * Gets the card being played by player1
+	 * @return the card being played
 	 */
 	public Card getCard1() {
 		return this.player1.seeCard();
 	}
-	
+
 	/**
 	 * Gets the card being played by player2
+	 * @return the card being played
 	 */
 	public Card getCard2() {
 		return this.player2.seeCard();
 	}
-	
+
 	/**
-	 * Transfers cards from the war pile to the player's pile
-	 * @param player
+	 * Transfers cards from the war pile to the winning player's pile
+	 * @param player - player to receive the cards as added to their winnings pile
 	 */
 	public void transferCards(Player player) {
 		while(!this.warPile.isEmpty()) {
 			player.addToWinningsPile(this.warPile.remove(this.warPile.size() - 1));
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Checks if WarGame is over
 	 * @return True or False
 	 */
@@ -113,10 +131,12 @@ public class WarGame {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Returns a string indicating the player who won 
+	 * Returns a string indicating the player who won
 	 * with each player's number of cards
+	 * @return the winner as determined by the player with
+	 * the greater winnings pile at the end of the game
 	 */
 	public String winner() {
 		int count1 = this.player1.winningsCount();
