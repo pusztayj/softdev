@@ -73,13 +73,27 @@ class FreeCell(object):
         pass
 
     def movetoFreeCell(self,card,freecell):
-        pass
+        """Moves a card from any site to a freecell."""
+        if len(freecell) > 1:
+            pass
+        freecell.push(card)
 
     def movetoFoundation(self,card,foundation):
-        pass
+        """Mpves the card from any pile to the foundation pile."""
+        if len(freecell) == 0:
+            foundation.push(card)
+        elif len(freecell) > 0 and len(freecell) <= 13:
+            card_foundation = freecell.peek()
+            if card.suit == card_foundation.suit:
+                foundation.push(card)
+            else:
+                return "Card must be same suit"
+        else:
+            return "Foundation has al ranks of the suit"
 
     def movetoTableaux(self,card,tableaux):
         pass
+        
 
     def winner(self):
         pass
