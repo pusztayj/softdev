@@ -12,12 +12,31 @@ import java.util.*;
 
 public interface CellInterface {
 	
+	/**
+	 * Method header to add a card to a pile in the game
+	 */
 	public void add();
 
+	/**
+	 * Method header to count the number of cards in a pile
+	 * @param stack - the pile you want to know the size of
+	 */
     public int size(Stack<Card> stack);
     
+    /**
+     * Returns true or false, depending on if the pile is full
+     * will return true if the pile is not full and a card can be added
+     * otherwise the pile is full and will return false
+     * @param card - the card which you want to add to a pile
+     */
     public boolean canAddTo(Card card);
 
+    /**
+     * Returns true or false, depending on if the pile is empty
+     * will return true if the pile is not empty and a card can be removed
+     * otherwise the pile is empty and will return false
+     * @param card - the card which you want to remove from a pile
+     */
     public boolean canRemoveFrom(Card card);
 	
 }
