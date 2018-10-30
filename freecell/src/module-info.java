@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author JPusztay
- *
- */
-module FreeCell {
-}
