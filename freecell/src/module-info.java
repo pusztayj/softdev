@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author JPusztay
+ *
+ */
+module FreeCell {
+}
