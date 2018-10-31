@@ -27,16 +27,14 @@ public interface CellInterface {
      * Returns true or false, depending on if the pile is full
      * will return true if the pile is not full and a card can be added
      * otherwise the pile is full and will return false
-     * @param card - the card which you want to add to a pile
      */
-    public boolean canAddTo(Card card);
+    public boolean canAddTo();
 
     /**
      * Returns true or false, depending on if the pile is empty
      * will return true if the pile is not empty and a card can be removed
      * otherwise the pile is empty and will return false
-     * @param card - the card which you want to remove from a pile
      */
-    public boolean canRemoveFrom(Card card);
+    public boolean canRemoveFrom();
 	
 }
