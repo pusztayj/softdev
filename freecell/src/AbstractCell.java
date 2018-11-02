@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Stack;
 
 public class AbstractCell implements CellInterface {
@@ -7,7 +8,10 @@ public class AbstractCell implements CellInterface {
 	 }
 
 	 public Card remove() {
-	    return stack.remove(stack.size() - 1)
+	    //return stack.remove(stack.size() - 1)
 	 }
+	 public Iterator<Card> iterator() {
+		 return cards.iterator();
+	    }
 
 }

@@ -47,4 +47,5 @@ public class Suit implements Comparable<Suit>{
     public String toString(){
         return name;
     }
+
 }

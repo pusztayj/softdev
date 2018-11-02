@@ -10,7 +10,7 @@ import java.util.*;
  * @version 1.0
  */
 
-public interface CellInterface {
+public interface CellInterface extends Iterable{
 	
 	/**
 	 * Method header to add a card to a pile in the game
@@ -36,5 +36,7 @@ public interface CellInterface {
      * otherwise the pile is empty and will return false
      */
     public boolean canRemoveFrom();
-	
+    
+    public Iterator<Card> iterator();
+
 }
