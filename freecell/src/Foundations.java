@@ -17,7 +17,7 @@ public class Foundations extends AbstractCell{
 	 * Adds a card to foundation pile with appropriate conditions
 	 */
 	public void add(Card card) {
-		if(cards.size() == 0 && card.getSuit() == type){
+		if(cards.size() == 0 && card.getSuit() == type && card.getRank() == 1){
 			cards.add(card);
 			System.out.println(cards);
 		}
@@ -38,17 +38,15 @@ public class Foundations extends AbstractCell{
     public static void main(String[] args) {
     	Deck deck = new Deck();
     	deck.shuffle();
-    	Card one = deck.deal();
-    	Card two = deck.deal();
-    	System.out.println(one);
-    	System.out.println(two);
-    	Foundations a = new Foundations(Suit.heart);   
-    	a.add(one);
-    	a.add(two);
-    	//System.out.println(a.iterator());
-    	for(Card card: a) {
-    		
+    	Foundations a = new Foundations(Suit.heart);
+    	for(int i = 0; i < 52; ++i){
+    		Card card = deck.deal();
+    		a.add(card);
     	}
+    	for (Iterator<Card> iterator = a.cards.iterator(); iterator.hasNext();) {
+			Card card = iterator.next();
+			System.out.println(card);
+		}
    	
     }
 
