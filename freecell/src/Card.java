@@ -50,6 +50,7 @@ public class Card implements Comparable<Card>{
     return CARD_BACK;
     }
 
+    
     /**
      * Turns the card over, negating its face up status.
      */
@@ -93,6 +94,15 @@ public class Card implements Comparable<Card>{
     public int getRank(){
         return rank;
     }
+    
+    public String getColor() {
+    	if (this.getSuit() == Suit.club || this.getSuit() == Suit.diamond) {
+    		return "black";
+    	}
+    	else {
+    		return "red";
+    	}
+    }
 
     /**
      * Compares two cards with respect to rank
@@ -104,37 +114,18 @@ public class Card implements Comparable<Card>{
     }
     
     /**
-     * Checks to see if the card in the argument is one rank greater
-     * than this card
-     * @return boolean true if it is one rank higher, otherwise return false
-     * @param a card you want to compare
-     */
-    public boolean greaterByOne(Card other){
-        return (other.rank - this.rank) == 1;
-    }
-    
-    /**
      * Checks to see if the card in the argument is of the same color
      * (red or black) as this card 
      * @return boolean true if they are the same color, false if not
      * @param a card you want to compare
      */
     public boolean sameColor(Card other){
-        Suit topSuit = this.getSuit();
-        Suit newCardSuit = other.getSuit();
-if((newCardSuit.compareTo(topSuit) == 0 ) ||
-(newCardSuit.compareTo(topSuit) == 3) || 
-(newCardSuit.compareTo(topSuit) == -3)) {
- 
-return true;
-}
-if (((topSuit == Suit.heart) && (newCardSuit == Suit.diamond)) ||
-((topSuit == Suit.diamond) && (newCardSuit == Suit.heart))) {
-return true;
-}
-else {
-return false;
-}
+    	if (this.getColor() == other.getColor()){
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     /**

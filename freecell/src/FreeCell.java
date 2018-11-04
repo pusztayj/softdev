@@ -1,10 +1,7 @@
-import java.util.*;
-
 public class FreeCell extends AbstractCell{
-//private Suit type; this isnt needed
-	FreeCell(){
+	
+	public FreeCell(){
 		super();
-		//this.type = type; again, not needed. So removed from argument
 	}
    
 	public boolean canAddTo(Card card) {
@@ -17,7 +14,7 @@ public class FreeCell extends AbstractCell{
 		}
 	}
 	public boolean canRemoveFrom(Card card) {
-		if (! (cards.size() == 0)){
+		if (cards.size() > 0){
 			return true;
 		}
 		else {

@@ -11,14 +11,14 @@ import java.util.*;
  */
 
 public interface CellInterface extends Iterable<Card>{
-/**
-* Method header to add a card to a pile in the game
-*/
-public void add(Card c);
+	/**
+	* Method header to add a card to a pile in the game
+	*/
+	public void add(Card c);
 
-/**
-* Method header to count the number of cards in a pile
-*/
+	/**
+	* Method header to count the number of cards in a pile
+	*/
     public int size();
     
     /**

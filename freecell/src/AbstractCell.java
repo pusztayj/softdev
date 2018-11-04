@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 public class AbstractCell implements CellInterface {
 	protected List<Card> cards;
-
+	
 	public AbstractCell(){
 		cards = new ArrayList<Card>();
 	}
@@ -15,10 +14,7 @@ public class AbstractCell implements CellInterface {
 	}
  
 	public void add(Card c) {
-		if (this.canAddTo(c)) {
-			cards.add(c);
-		}
- 
+		cards.add(c);
 	}
 
 	public Card remove() {
