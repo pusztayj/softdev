@@ -8,6 +8,16 @@ import java.util.*;
 		public boolean canAddTo(Card card) {
 			Card topCard = this.cards.get(this.cards.size()-1);
 			if (!(topCard.sameColor(card))) {
+				if (topCard.greaterByOne(card)) {
+					return true;
+				}	
+				
+			}
+			else {
+				return false;
+			}
+			
+			
 				if(card.getSuit() == type && card.getRank() == 1) {
 					return true;
 				}
