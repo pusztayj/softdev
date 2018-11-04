@@ -8,6 +8,7 @@ public class Foundations extends AbstractCell{
 		this.type = type;
 	}
 	
+	@Override
 	public boolean canAddTo(Card card) {
 		if (cards.size() < maxSize) {
 			if(cards.size() == 0) {

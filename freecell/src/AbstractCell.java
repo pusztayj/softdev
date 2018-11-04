@@ -8,11 +8,23 @@ public class AbstractCell implements CellInterface {
 	public AbstractCell(){
 		cards = new ArrayList<Card>();
 	}
+	
+	public String toString() {
+		return cards.toString();
+	}
+	
+	/**
+	 * Returns the last card in the card arraylist (top of pile in game)
+	 * @return
+	 */
+	public Card get() {
+		return cards.get(this.size()-1);
+	}
 
 	public int size(){
 		return cards.size();
 	}
- 
+	
 	public void add(Card c) {
 		cards.add(c);
 	}

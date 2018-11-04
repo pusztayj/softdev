@@ -6,6 +6,7 @@ public class Tableau extends AbstractCell{
 		super();
 	}
 	
+	@Override
 	/**
      * Checks tableau rules that card to add to pile is of
      * opposite color and one rank one less than the top card in the pile
@@ -27,6 +28,7 @@ public class Tableau extends AbstractCell{
 		}
 	}
 
+	@Override
 	public boolean canRemoveFrom(Card card) {
 		if (cards.size() > 0){
 			return true;
@@ -35,5 +37,10 @@ public class Tableau extends AbstractCell{
 			System.out.println("This free cell pile is empty");
 			return false;
 		}
+	}
+	
+	@Override
+	public Card remove() {
+		return this.cards.remove(this.size() -1);
 	}
 }
