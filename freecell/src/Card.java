@@ -21,12 +21,12 @@ public class Card implements Comparable<Card>{
      * @param rank the card's rank
      */
     public Card(Suit suit, int rank){
-    	this.suit = suit;
-    	this.rank = rank;
-    	faceUp = false;
-    	image = getImageFromFile(rank, suit);
-    	if (CARD_BACK == null)
-    		CARD_BACK = getBackFromFile();
+    this.suit = suit;
+    this.rank = rank;
+    faceUp = false;
+    image = getImageFromFile(rank, suit);
+    if (CARD_BACK == null)
+    CARD_BACK = getBackFromFile();
     }
 
     /**
@@ -34,10 +34,10 @@ public class Card implements Comparable<Card>{
      * @return the card's face image or the back side image
      */
     public Icon getImage(){
-    	if (faceUp)
-    	    return image;
-    	else
-    	    return CARD_BACK;
+    if (faceUp)
+       return image;
+    else
+       return CARD_BACK;
     }
 
     /**
@@ -45,29 +45,29 @@ public class Card implements Comparable<Card>{
      * @return the back side image of a card
      */
     public static Icon getBack(){
-    	if (CARD_BACK == null)
-    	    new Card(Suit.spade, 1);
-    	return CARD_BACK;
+    if (CARD_BACK == null)
+       new Card(Suit.spade, 1);
+    return CARD_BACK;
     }
 
     /**
      * Turns the card over, negating its face up status.
      */
     public void turn(){
-    	faceUp = ! faceUp;
+    faceUp = ! faceUp;
     }
 
     private Icon getImageFromFile(int rank, Suit suit){
-    	String fileName = "DECK/";
-    	fileName += rank;
-    	fileName += Character.toUpperCase(suit.toString().charAt(0));
-    	fileName += ".GIF";
-    	return new ImageIcon(getClass().getResource(fileName));
+    String fileName = "DECK/";
+    fileName += rank;
+    fileName += Character.toUpperCase(suit.toString().charAt(0));
+    fileName += ".GIF";
+    return new ImageIcon(getClass().getResource(fileName));
     }
 
     private Icon getBackFromFile(){
-    	String fileName = "DECK/CARDBACK.GIF";
-    	return new ImageIcon(getClass().getResource(fileName));
+    String fileName = "DECK/CARDBACK.GIF";
+    return new ImageIcon(getClass().getResource(fileName));
     }
 
     /**
@@ -85,7 +85,7 @@ public class Card implements Comparable<Card>{
     public Suit getSuit(){
         return suit;
     }
-
+    
     /**
      * Returns the card's rank
      * @return the card's rank
@@ -97,9 +97,44 @@ public class Card implements Comparable<Card>{
     /**
      * Compares two cards with respect to rank
      * @return 0 if equal, less than 0 if less, greater than 0 if greater
+     * @param a card you want to compare
      */
     public int compareTo(Card other){
         return this.rank - other.rank;
+    }
+    
+    /**
+     * Checks to see if the card in the argument is one rank greater
+     * than this card
+     * @return boolean true if it is one rank higher, otherwise return false
+     * @param a card you want to compare
+     */
+    public boolean greaterByOne(Card other){
+        return (other.rank - this.rank) == 1;
+    }
+    
+    /**
+     * Checks to see if the card in the argument is of the same color
+     * (red or black) as this card 
+     * @return boolean true if they are the same color, false if not
+     * @param a card you want to compare
+     */
+    public boolean sameColor(Card other){
+        Suit topSuit = this.getSuit();
+        Suit newCardSuit = other.getSuit();
+if((newCardSuit.compareTo(topSuit) == 0 ) ||
+(newCardSuit.compareTo(topSuit) == 3) || 
+(newCardSuit.compareTo(topSuit) == -3)) {
+ 
+return true;
+}
+if (((topSuit == Suit.heart) && (newCardSuit == Suit.diamond)) ||
+((topSuit == Suit.diamond) && (newCardSuit == Suit.heart))) {
+return true;
+}
+else {
+return false;
+}
     }
 
     /**

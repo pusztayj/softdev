@@ -7,21 +7,21 @@
  */
 public class Suit implements Comparable<Suit>{
 
-	/**
-	 * Suit for all spades.
-	 */
-	static public final Suit spade   = new Suit(4, "spades");
-	/**
-	 * Suit for all hearts.
-	 */
+/**
+* Suit for all spades.
+*/
+static public final Suit spade   = new Suit(4, "spades");
+/**
+* Suit for all hearts.
+*/
     static public final Suit heart   = new Suit(3, "hearts");   
-	/**
-	 * Suit for all diamonds.
-	 */
+/**
+* Suit for all diamonds.
+*/
     static public final Suit diamond = new Suit(2, "diamonds");   
-	/**
-	 * Suit for all clubs.
-	 */
+/**
+* Suit for all clubs.
+*/
     static public final Suit club    = new Suit(1, "clubs");
 
     private int order;
