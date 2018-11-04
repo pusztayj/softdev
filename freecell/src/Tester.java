@@ -9,7 +9,7 @@ public class Tester {
     		Card card = deck.deal();
     		a.add(card);
     	}
-    	for (Object card: a) {
+    	for (Card card: a) {
 			System.out.println(card);
 		}
    	
