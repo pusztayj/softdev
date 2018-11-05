@@ -1,7 +1,20 @@
+/**
+ * The Tableau class for FreeCell game
+ * Represents the Tableau pile in the Free Cell game
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ * @version 1.0
+ */
+
 public class Tableau extends AbstractCell{
 	
 	private static int maxSize = 19;
 	
+    /**
+     * Constructor to create ArrayList from AbstractCell constructor
+     */
 	public Tableau(){
 		super();
 	}
@@ -28,6 +41,12 @@ public class Tableau extends AbstractCell{
 		}
 	}
 
+	/**
+     * Returns true or false, depending on if we can remove a card
+     * from the pile or not 
+     * @param card you want to remove from the pile
+     * @return true if the pile is not full, false if it is full
+     */
 	@Override
 	public boolean canRemoveFrom(Card card) {
 		if (cards.size() > 0){
@@ -39,6 +58,10 @@ public class Tableau extends AbstractCell{
 		}
 	}
 	
+	/**
+     * Removes the last card in the list
+     * @return card on top of the pile
+     */
 	@Override
 	public Card remove() {
 		return this.cards.remove(this.size() -1);

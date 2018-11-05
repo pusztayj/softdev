@@ -5,8 +5,12 @@ import javax.swing.ImageIcon;
  * Represents a playing card with a suit,
  * rank, image, and face up status.
  * @author lambertk
- *
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
  */
+
 public class Card implements Comparable<Card>{
 
     private Suit suit;
@@ -95,6 +99,10 @@ public class Card implements Comparable<Card>{
         return rank;
     }
     
+    /**
+     * Returns the color, red or black, of the card
+     * @return a string of black or red for the color of the card
+     */
     public String getColor() {
     	if (this.getSuit() == Suit.club || this.getSuit() == Suit.diamond) {
     		return "black";
@@ -106,8 +114,8 @@ public class Card implements Comparable<Card>{
 
     /**
      * Compares two cards with respect to rank
-     * @return 0 if equal, less than 0 if less, greater than 0 if greater
      * @param a card you want to compare
+     * @return 0 if equal, less than 0 if less, greater than 0 if greater
      */
     public int compareTo(Card other){
         return this.rank - other.rank;
@@ -136,6 +144,11 @@ public class Card implements Comparable<Card>{
         return rankToString(rank) + " of " + suit;
     }
 
+    /**
+     * Returns the string representation of the card for ranks greater than 10
+     * @param rank of the card
+     * @return the string representation of the card
+     */
     static private String rankToString(int rank){
         if (rank >= 2 && rank <= 10) return rank + "";
         else if (rank == 11) return "Jack";

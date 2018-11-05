@@ -2,9 +2,8 @@ import java.util.*;
 
 /**
  * The cell interface for FreeCell game
- * @author lambertk
  * @author pusztayj
- * @author dot
+ * @author dut
  * @author babikr
  * @author brandl
  * @version 1.0
