@@ -111,7 +111,6 @@ public class Card implements Comparable<Card>{
     		return "red";
     	}
     }
-
     /**
      * Compares two cards with respect to rank
      * @param a card you want to compare

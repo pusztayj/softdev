@@ -34,6 +34,9 @@ public interface CellInterface extends Iterable<Card>{
      */
     public boolean canRemoveFrom(Card card);
     
+    /**
+     * Iterates through the content of the cells.
+     */
     public Iterator<Card> iterator();
 
 }

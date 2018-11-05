@@ -1,3 +1,13 @@
+/**
+ * The Game class for the freecell game. It runs the moves in the freecell game and moves the cards
+ * between the various piles. 
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ * @version 1.0
+ */
+
 import java.util.*;
 
 public class Game {
@@ -13,7 +23,11 @@ public class Game {
 	private Foundations foundations4;
 
 	private ArrayList<Tableau> tableauList; 
-	
+
+	/**
+     * Constructor for the game that creates all of the piles, the deck and distrubites the 
+     * cards randomly to the tableau piles.
+     */
 	public Game(){
 		this.freecell1 = new FreeCell();
 		this.freecell2 = new FreeCell();
@@ -32,6 +46,9 @@ public class Game {
 		this.setup();
 	}
 	
+	/**
+	 * Deals the cards into the tableau piles. 
+	 */
 	public void setup() {
 		for(int i = 0; i<6; i++) {
 			for(Tableau tab : tableauList) {
@@ -43,7 +60,11 @@ public class Game {
 		tableauList.get(2).add(this.deck.deal());
 		tableauList.get(3).add(this.deck.deal());
 	}
-	
+	/**
+	 * Returns a string reprsentation of the current state in the game. It will
+	 * have all the cards listed in their respective piles.
+     * @return String, representing the game. 
+	 */
 	public String toString() {
 		String tableauString = "";
 		for(int i = 0; i < 8; i++) {
@@ -70,7 +91,10 @@ public class Game {
 			toCell.add(fromCell.remove());
 		}
 	}
-	
+	/**
+	 * Creates a new game. Clears all the cards in the piles and restributes a shuffled deck
+	 * into the tableau piles. 
+	 */
 	public void newGame() {
 		this.freecell1 = new FreeCell();
 		this.freecell2 = new FreeCell();
@@ -83,9 +107,5 @@ public class Game {
 		this.deck = new Deck();
 		this.deck.shuffle();
 		this.setup();
-	}
-	public static void main(String[] args) {
-		Game a = new Game();
-		System.out.println(a.tableauList.get(2));
 	}
 }
