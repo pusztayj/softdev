@@ -39,7 +39,6 @@ public class TestGame {
 			for(Tableau tab : tableauList) {
 				tab.add(deck.deal());
 			}
-			System.out.println(tableauList.get(0));
 		}
 		tableauList.get(0).add(deck.deal());
 		tableauList.get(1).add(deck.deal());
@@ -49,6 +48,7 @@ public class TestGame {
 		
 		System.out.println("Expect 7: " + tableauList.get(2).size());
 		System.out.println("Removing card from Tableau");
+		System.out.println("Moving to Free cell");
 		Card fromCard = tableauList.get(2).get();
 		if(tableauList.get(2).canRemoveFrom(fromCard) && freecell1.canAddTo(fromCard)) {
 			freecell1.add(tableauList.get(2).remove());
