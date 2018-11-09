@@ -32,11 +32,19 @@ public interface CellInterface extends Iterable<Card>{
      * will return true if the pile is not empty and a card can be removed
      * otherwise the pile is empty and will return false
      */
-    public boolean canRemoveFrom(Card card);
+    public boolean canRemoveFrom();
     
     /**
      * Iterates through the content of the cells.
      */
+    
+    public boolean canMoveFrom(CellInterface fromCell);
+    
+    public boolean moveFrom(CellInterface fromCell);
+    
+    
     public Iterator<Card> iterator();
+    
+    public Card remove();
 
 }

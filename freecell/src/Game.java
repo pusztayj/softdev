@@ -13,36 +13,27 @@ import java.util.*;
 public class Game {
 	
 	private Deck deck;
-	private FreeCell freecell1;
-	private FreeCell freecell2;
-	private FreeCell freecell3;
-	private FreeCell freecell4;
-	private Foundations foundations1;
-	private Foundations foundations2;
-	private Foundations foundations3;
-	private Foundations foundations4;
-
-	private ArrayList<Tableau> tableauList; 
+	private ArrayList<Tableau> tableauList;
+	private ArrayList<FreeCell> freecellList;
+	private ArrayList<Foundations> foundationsList;
 
 	/**
      * Constructor for the game that creates all of the piles, the deck and distrubites the 
      * cards randomly to the tableau piles.
      */
 	public Game(){
-		this.freecell1 = new FreeCell();
-		this.freecell2 = new FreeCell();
-		this.freecell3 = new FreeCell();
-		this.freecell4 = new FreeCell();
-		this.foundations1 = new Foundations(Suit.spade);
-		this.foundations2 = new Foundations(Suit.heart);
-		this.foundations3 = new Foundations(Suit.diamond);
-		this.foundations4 = new Foundations(Suit.club);
+		this.freecellList = new ArrayList<FreeCell>(); 
+		for(int i = 0; i<4; i++){
+			this.freecellList.add(new FreeCell());
+		}
+		this.foundationsList = new ArrayList<Foundations>();
+		for(int i = 0; i < 4; i++) {
+			this.foundationsList.add(new Foundations());
+		}
 		this.tableauList = new ArrayList<Tableau>();
 		for(int i = 0; i<8; i++) {
 			this.tableauList.add(new Tableau());
 		}
-		this.deck = new Deck();
-		this.deck.shuffle();
 		this.setup();
 	}
 	
@@ -50,6 +41,8 @@ public class Game {
 	 * Deals the cards into the tableau piles. 
 	 */
 	public void setup() {
+		this.deck = new Deck();
+		this.deck.shuffle();
 		for(int i = 0; i<6; i++) {
 			for(Tableau tab : tableauList) {
 				tab.add(this.deck.deal());
@@ -70,13 +63,15 @@ public class Game {
 		for(int i = 0; i < 8; i++) {
 			tableauString = tableauString + "Tableau " + (i+1) + ": " + this.tableauList.get(i).toString() +"\n";
 		}
-		return tableauString +
-				"Free Cell 1: " + this.freecell1.toString() +"\n" + "Free Cell 2: " + this.freecell2.toString() +"\n" +
-				"Free Cell 3: " + this.freecell3.toString() +"\n" + "Free Cell 4: " + this.freecell4.toString() +"\n" +
-				"Foundation Pile (Spade): " + this.foundations1.toString() +"\n" + 
-				"Foundation Pile (Heart): " + this.foundations2.toString() +"\n" +
-				"Foundation Pile (Diamond): " + this.foundations3.toString() +"\n" +
-				"Foundation Pile (Club): " + this.foundations4.toString();
+		String freecellString = "";
+		for(int i = 0; i < 4; i++) {
+			freecellString = freecellString + "Tableau " + (i+1) + ": " + this.freecellList.get(i).toString() + "\n"; 
+		}
+		String foundationsString = "";
+		for(int i = 0; i < 4; i++) {
+			foundationsString = foundationsString + "Foundation " + (i+1) + ": " + this.foundationsList.get(i).toString() + "\n"; 
+		}
+		return tableauString + freecellString + foundationsString;
 	}
 	
 	/**
@@ -96,16 +91,15 @@ public class Game {
 	 * into the tableau piles. 
 	 */
 	public void newGame() {
-		this.freecell1 = new FreeCell();
-		this.freecell2 = new FreeCell();
-		this.freecell3 = new FreeCell();
-		this.freecell4 = new FreeCell();
-		this.foundations1 = new Foundations(Suit.spade);
-		this.foundations2 = new Foundations(Suit.heart);
-		this.foundations3 = new Foundations(Suit.diamond);
-		this.foundations4 = new Foundations(Suit.club);
-		this.deck = new Deck();
-		this.deck.shuffle();
+		for(FreeCell i: this.freecellList){
+			i.clear();
+		}
+		for (Foundations i: this.foundationsList) {
+			i.clear();
+		}
+		for(Tableau i: this.tableauList) {
+			i.clear();
+		}
 		this.setup();
 	}
 }

@@ -53,6 +53,19 @@ public class AbstractCell implements CellInterface {
 		cards.add(c);
 	}
 
+	public boolean canMoveFrom(CellInterface fromCell) {
+		return false;
+	}
+	
+	public boolean moveFrom(CellInterface fromCell) {
+		if (this.canMoveFrom(fromCell)) {
+			this.add(fromCell.remove());
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	/**
      * Throws an exception by default on removing a card
      */
@@ -85,7 +98,13 @@ public class AbstractCell implements CellInterface {
      * @param card you want to remove from the pile
      * @return false by default, can override in implementing classes
      */
-	public boolean canRemoveFrom(Card card) {
+	public boolean canRemoveFrom() {
 		return false;
+	}
+	/**
+	 * Clears the cards list for a cell.
+	 */
+	public void clear() {
+		this.cards.clear();
 	}
 }

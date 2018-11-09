@@ -58,6 +58,7 @@ public class Tableau extends AbstractCell{
 		}
 	}
 	
+	
 	/**
      * Removes the last card in the list
      * @return card on top of the pile
