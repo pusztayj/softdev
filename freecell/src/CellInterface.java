@@ -37,14 +37,31 @@ public interface CellInterface extends Iterable<Card>{
     /**
      * Iterates through the content of the cells.
      */
+    public Iterator<Card> iterator();
     
+    /**
+     * Checks the current cell's canAddTo and the fromCell's canRemoveFrom
+     * @param fromCell
+     * @return True if both methods return true, False otherwise
+     */
     public boolean canMoveFrom(CellInterface fromCell);
+    
     
     public boolean moveFrom(CellInterface fromCell);
     
     
-    public Iterator<Card> iterator();
-    
+
+    /**
+     * Calls the remove method on the Cell's cards list
+     * @return last Card in the list
+     */
     public Card remove();
+    
+    
+    /**
+     * Looks at the last card in the list but does not remove it from the list
+     * @return last Card in the list
+     */
+    public Card get();
 
 }

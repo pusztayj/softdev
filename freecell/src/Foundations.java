@@ -21,50 +21,55 @@ public class Foundations extends AbstractCell{
 	}
 	
 	public boolean canMoveFrom(CellInterface fromCell) {
-		return fromCell.canRemoveFrom();
+		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	
 	
 	
 	
-//	@Override
-//	/**
-//     * Checks foundations rules that card to add to pile is of
-//     * same color and one rank one greater than the top card in the pile
-//     * @param card you want to add to the foundations
-//     * @return boolean true if can add that card, otherwise false
-//     */
-//	public boolean canAddTo(Card card) {
-//		if (cards.size() < maxSize) {
-//			if(cards.size() == 0) {
-//				if(card.getRank() == 1) {
-//					this.type = card.getSuit();
-//					return true;
-//				}
-//				else {
-//					//System.out.println("First card must be Ace of" + type);
-//					return false;
-//				}
-//			}
-//			else {
-//				if(type == card.getSuit()){
-//					Card topOfPile = cards.get(cards.size()-1);
-//					if(card.compareTo(topOfPile) == 1) {
-//						return true;
-//					}
-//					else { 
-//						//System.out.println("Next card must be one rank higher than top of pile" );
-//						return false;
-//					}
-//				}
-//				else {
-//					return false;
-//				}
-//			}
-//		}
-//		else {
-//			return false;
-//		}
-//	}
+	@Override
+	/**
+     * Checks foundations rules that card to add to pile is of
+     * same color and one rank one greater than the top card in the pile
+     * @param card you want to add to the foundations
+     * @return boolean true if can add that card, otherwise false
+     */
+	public boolean canAddTo(Card card) {
+		if (cards.size() < maxSize) {
+			if(cards.size() == 0) {
+				if(card.getRank() == 1) {
+					this.type = card.getSuit();
+					return true;
+				}
+				else {
+					//System.out.println("First card must be Ace of" + type);
+					return false;
+				}
+			}
+			else {
+				if(this.type == card.getSuit()){
+					Card topOfPile = cards.get(cards.size()-1);
+					if(card.compareTo(topOfPile) == 1) {
+						return true;
+					}
+					else { 
+						//System.out.println("Next card must be one rank higher than top of pile" );
+						return false;
+					}
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		else {
+			return false;
+		}
+	}
 }

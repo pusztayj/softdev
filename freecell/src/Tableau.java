@@ -48,12 +48,12 @@ public class Tableau extends AbstractCell{
      * @return true if the pile is not full, false if it is full
      */
 	@Override
-	public boolean canRemoveFrom(Card card) {
+	public boolean canRemoveFrom() {
 		if (cards.size() > 0){
 			return true;
 		}
 		else {
-			System.out.println("This free cell pile is empty");
+			//System.out.println("This free cell pile is empty");
 			return false;
 		}
 	}

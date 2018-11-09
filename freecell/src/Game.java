@@ -54,7 +54,7 @@ public class Game {
 		tableauList.get(3).add(this.deck.deal());
 	}
 	/**
-	 * Returns a string reprsentation of the current state in the game. It will
+	 * Returns a string representation of the current state in the game. It will
 	 * have all the cards listed in their respective piles.
      * @return String, representing the game. 
 	 */
@@ -80,14 +80,11 @@ public class Game {
 	 * @param fromCell - cell subclass typecast as AbstractCell
 	 * @param toCell - cell subclass typecast as AbstractCell
 	 */
-	public void move(AbstractCell fromCell, AbstractCell toCell) {
-		Card fromCard = fromCell.get();
-		if(fromCell.canRemoveFrom(fromCard) && toCell.canAddTo(fromCard)) {
-			toCell.add(fromCell.remove());
-		}
+	public boolean move(CellInterface fromCell, CellInterface toCell) {
+		return toCell.canMoveFrom(fromCell);
 	}
 	/**
-	 * Creates a new game. Clears all the cards in the piles and restributes a shuffled deck
+	 * Creates a new game. Clears all the cards in the piles and redistributes a shuffled deck
 	 * into the tableau piles. 
 	 */
 	public void newGame() {
