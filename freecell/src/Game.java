@@ -18,7 +18,7 @@ public class Game {
 	private ArrayList<Foundations> foundationsList;
 
 	/**
-     * Constructor for the game that creates all of the piles, the deck and distrubites the 
+     * Constructor for the game that creates all of the piles, the deck and distributes the 
      * cards randomly to the tableau piles.
      */
 	public Game(){
@@ -98,5 +98,17 @@ public class Game {
 			i.clear();
 		}
 		this.setup();
+		
 	}
+	
+	public ArrayList<Tableau> getTableau() {
+		return this.tableauList;
+	}
+	public ArrayList<FreeCell> getFreeCell() {
+		return this.freecellList;
+	}
+	public ArrayList<Foundations> getFoundation() {
+		return this.foundationsList;
+	}
+	
 }

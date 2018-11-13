@@ -33,7 +33,7 @@ public class CardPanel extends JPanel{
     	super.paintComponent(g);
     	Icon image;
     	if (card == null){
-    		image = Card.getBack();
+    		image = card.getBack();
     		g.setColor(Color.yellow);
     		int x = (getWidth() - image.getIconWidth()) / 2;
     		int y = (getHeight() - image.getIconHeight()) / 2;

@@ -14,6 +14,7 @@ public class CellPanel extends JPanel{
      */
     public CellPanel(CellInterface cell){
         panelCell = cell;
+        setBackground(new Color(0, 150, 0));
     }
 
     /**
@@ -36,6 +37,7 @@ public class CellPanel extends JPanel{
     	}
     	else{
     		Card topCard = panelCell.get();
+    		//topCard.turn();
     		image = topCard.getImage();
     		int x = (getWidth() - image.getIconWidth()) / 2;
     		image.paintIcon(this, g, x, y);
@@ -46,13 +48,8 @@ public class CellPanel extends JPanel{
     	return panelCell;
     }
     
-//    /**
-//     * Resets the panel's card and refreshes the panel.
-//     * @param c the card to be displayed.
-//     */
-//    public void setCard(Card c){
-//    	card = c;
-//    	repaint();
-//    }
-
+    public void setCell(CellInterface c) {
+    	panelCell = c;
+    	repaint();
+    }
 }
