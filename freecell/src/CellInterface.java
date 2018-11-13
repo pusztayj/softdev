@@ -47,6 +47,9 @@ public interface CellInterface extends Iterable<Card>{
     public boolean canMoveFrom(CellInterface fromCell);
     
     
+    public boolean isEmpty();
+    
+    
     public boolean moveFrom(CellInterface fromCell);
     
     
@@ -62,6 +65,8 @@ public interface CellInterface extends Iterable<Card>{
      * Looks at the last card in the list but does not remove it from the list
      * @return last Card in the list
      */
+    public Card get(int index);
+    
     public Card get();
 
 }

@@ -33,6 +33,11 @@ public class AbstractCell implements CellInterface {
 	/**
 	 * Returns the last card in the card arraylist (top of pile in game)
 	 */
+	
+	public Card get(int index) {
+		return cards.get(index);
+	}
+	
 	public Card get() {
 		return cards.get(this.size()-1);
 	}
@@ -106,5 +111,9 @@ public class AbstractCell implements CellInterface {
 	 */
 	public void clear() {
 		this.cards.clear();
+	}
+	
+	public boolean isEmpty() {
+		return cards.isEmpty();
 	}
 }
