@@ -55,10 +55,12 @@ public class FreeCellView extends JFrame{
         newGameButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
         	game.newGame();
+        	FreeCellView.this.repaint();
         	
-        	for (int i=0; i< tableauPanels.size(); i++) {
-        		tableauPanels.get(i).setCell(game.getTableau().get(i));
-        		}
+        	//Not needed, just repaint.
+//        	for (int i=0; i< tableauPanels.size(); i++) {
+//        		tableauPanels.get(i).setCell(game.getTableau().get(i));
+//        		}
         	}
         });
 

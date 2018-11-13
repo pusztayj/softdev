@@ -24,7 +24,7 @@ public class MultiPanel extends CellPanel {
 	    	else{
 	    		for (int i = 0; i < panelCell.size(); i++) {
 	    			Card displayCard = panelCell.get(i);
-	    			displayCard.turn();
+	    			//displayCard.turn();
 	    			image = displayCard.getImage();
 	    			int x = (getWidth() - image.getIconWidth()) / 2;
 	    			image.paintIcon(this,  g,  x, y);

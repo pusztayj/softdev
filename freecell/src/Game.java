@@ -45,13 +45,16 @@ public class Game {
 		this.deck.shuffle();
 		for(int i = 0; i<6; i++) {
 			for(Tableau tab : tableauList) {
-				tab.add(this.deck.deal());
+				Card tempCard = this.deck.deal();
+				tempCard.turn();
+				tab.add(tempCard);
 			}
 		}
-		tableauList.get(0).add(this.deck.deal());
-		tableauList.get(1).add(this.deck.deal());
-		tableauList.get(2).add(this.deck.deal());
-		tableauList.get(3).add(this.deck.deal());
+		for(int i = 0; i < 3; i++) {
+			Card tempCard = this.deck.deal();
+			tempCard.turn();
+			tableauList.get(i).add(tempCard);
+		}
 	}
 	/**
 	 * Returns a string representation of the current state in the game. It will
