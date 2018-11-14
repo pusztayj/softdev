@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 
 /**
  * Generic main method template for any GUI-based application.
- * Instantiates a model and passes it to a new view.
+ * Instantiates a free cell model and passes it to a new view.
  * @author lambertk
  * @author pusztayj
  * @author dut

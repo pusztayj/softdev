@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Represents a playing card with a suit,
- * rank, image, and face up status.
+ * Displays the multipanel with card images 
+ * for the Tableau piles of a free cell game
  * @author lambertk
  * @author pusztayj
  * @author dut
@@ -12,16 +12,19 @@ import java.awt.*;
  */
 
 public class MultiPanel extends CellPanel {
+
     /**
      * Constructor for an empty multipanel, displays a wire frame. 
-     * @args - the cell interface
-     */
+     * @param cell - the cell 
+	 */
 	public MultiPanel(CellInterface cell) {
 		super(cell);
 	}
     /**
-     * Paints the multiple cards face image if cards are present, otherwise, paints the back side image.
-     */
+     * Paints the multiple cards face image if cards are present,
+     * otherwise, paints the back side image.
+	 * @param g - the graphics
+	 */
 	 public void paintComponent(Graphics g){
 	    	super.paintComponent(g);
 	    	Icon image;
@@ -39,7 +42,6 @@ public class MultiPanel extends CellPanel {
 	    	else{
 	    		for (int i = 0; i < panelCell.size(); i++) {
 	    			Card displayCard = panelCell.get(i);
-	    			//displayCard.turn();
 	    			image = displayCard.getImage();
 	    			int x = (getWidth() - image.getIconWidth()) / 2;
 	    			image.paintIcon(this,  g,  x, y);

@@ -2,19 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Represents a playing card with a suit,
- * rank, image, and face up status.
- * @author lambertk
+ * Represents the GUI component for painting an image of a playing card.
  * @author pusztayj
  * @author dut
  * @author babikr
  * @author brandl
+ * @version 1.0
  */
 
-/**
- * Represents the GUI component for painting an image of a playing card.
- *
- */
 public class CellPanel extends JPanel{
 
     protected CellInterface panelCell;
@@ -28,9 +23,10 @@ public class CellPanel extends JPanel{
     }
 
     /**
-     * Paints the card's face image if a card is present, otherwise, paints the back side image.
+     * Paints the card's face image if a card is present, 
+     * otherwise, paints the back side image.
+     * @param g - the graphics
      */
-    
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
     	Icon image;
@@ -53,11 +49,17 @@ public class CellPanel extends JPanel{
     		image.paintIcon(this, g, x, y);
     	}
     }
-    
+    /**
+     * gets a panel cell from the model
+     * @return panelCell - the cell you are getting 
+     */
     public CellInterface getCell() {
     	return panelCell;
     }
-    
+    /**
+     * updates the cell display in the view by repainting it
+     *  @param c - the cell to update the display of
+     */
     public void setCell(CellInterface c) {
     	panelCell = c;
     	repaint();

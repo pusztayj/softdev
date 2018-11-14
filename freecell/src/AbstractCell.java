@@ -31,12 +31,18 @@ public class AbstractCell implements CellInterface {
 	}
 	
 	/**
-	 * Returns the last card in the card arraylist (top of pile in game)
+	 * Returns the card at the specified index
+	 * @param index - index for the card you want
+	 * @return the last card
 	 */
 	public Card get(int index) {
 		return cards.get(index);
 	}
 	
+	/**
+	 * Returns the last card in the card arraylist (top of pile in game)
+	 * @return the last card in the stack
+	 */
 	public Card get() {
 		return cards.get(this.size()-1);
 	}
@@ -58,7 +64,8 @@ public class AbstractCell implements CellInterface {
 	}
 	/**
      * Checks if the card be removed from a cell
-     * @param cell object
+     * @param fromCell - cell object
+     * @return false by default
      */
 	public boolean canMoveFrom(CellInterface fromCell) {
 		return false;
@@ -66,7 +73,8 @@ public class AbstractCell implements CellInterface {
 	/**
      * Checks if the card be moved from a cell and then removes the card from the 
      * cell and adds it to the appropriate cell.
-     * @param card object to add to the list
+     * @param fromCell - card object to add to the list
+     * @return boolean true or false if moved the card
      */
 	public boolean moveFrom(CellInterface fromCell) {
 		if (this.canMoveFrom(fromCell)) {
@@ -106,7 +114,6 @@ public class AbstractCell implements CellInterface {
 	/**
      * Returns true or false, depending on if we can remove a card
      * from the pile or not 
-     * @param card you want to remove from the pile
      * @return false by default, can override in implementing classes
      */
 	public boolean canRemoveFrom() {
@@ -120,7 +127,8 @@ public class AbstractCell implements CellInterface {
 	}
 	
 	/**
-	 * Checks if the cell is empty. 
+	 * Checks if the cell is empty.
+	 * @return boolean if the stack is empty or not 
 	 */	
 	public boolean isEmpty() {
 		return cards.isEmpty();
