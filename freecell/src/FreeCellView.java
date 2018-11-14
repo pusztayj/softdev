@@ -28,15 +28,17 @@ public class FreeCellView extends JFrame{
         Container c = getContentPane();
         GridBagLayout layout = new GridBagLayout();
         c.setLayout(layout);
+        
+        
+        // Define Constraints for Top Labels
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = 0;
-        constraints.anchor = 10;
         constraints.gridwidth = 4;
         constraints.gridheight = 1;
 
        
 
-        // Top Labels
+        // Create Top Labels
         JLabel freeCellLabel = new JLabel("Free Cells");
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -52,15 +54,15 @@ public class FreeCellView extends JFrame{
         
         
         
-        // Create cells 
+        // Create lists for each cell type 
         ArrayList<CellPanel> freecellPanels = new ArrayList<CellPanel>();
         ArrayList<CellPanel> foundationPanels = new ArrayList<CellPanel>();
         ArrayList<MultiPanel> tableauPanels = new ArrayList<MultiPanel>();
         
         // Define Constraints for Top Cells
         constraints.fill = 1;
-        constraints.weightx = 50;
-        constraints.weighty = 50;
+        constraints.weightx = .5;
+        constraints.weighty = .5;
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -83,8 +85,8 @@ public class FreeCellView extends JFrame{
         
         // Define constraints for bottom cells
 
-        constraints.weightx = 100;
-        constraints.weighty = 100;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
         constraints.gridx = 0;
         constraints.gridy = 2;
         
