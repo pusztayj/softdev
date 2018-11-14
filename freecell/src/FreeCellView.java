@@ -24,54 +24,100 @@ public class FreeCellView extends JFrame{
     public FreeCellView(Game game){
         this.game = game;
         this.setTitle("Free Cell");
+        this.setBackground(new Color(0, 150, 0));
+        Container c = getContentPane();
+        GridBagLayout layout = new GridBagLayout();
+        c.setLayout(layout);
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = 0;
+        constraints.anchor = 10;
+        constraints.gridwidth = 4;
+        constraints.gridheight = 1;
 
+       
 
-        // Top panel with labels
-        JPanel headerPanel = new JPanel(new GridLayout(1,2));
-        headerPanel.add(new JLabel("Free Cells", 0));
-        headerPanel.add(new JLabel("Home Cells", 0));
+        // Top Labels
+        JLabel freeCellLabel = new JLabel("Free Cells");
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        layout.setConstraints(freeCellLabel, constraints);
+        c.add(freeCellLabel);
         
         
-
-        JPanel mainPanel = new JPanel(new GridLayout(2,8));
-        mainPanel.setBackground (new Color(0,150,0));
+        JLabel homeCellLabel = new JLabel("Home Cells");
+        constraints.gridx = 4;
+        constraints.gridy = 0;
+        layout.setConstraints(homeCellLabel, constraints);
+        c.add(homeCellLabel);
+        
+        
+        
+        // Create cells 
         ArrayList<CellPanel> freecellPanels = new ArrayList<CellPanel>();
         ArrayList<CellPanel> foundationPanels = new ArrayList<CellPanel>();
         ArrayList<MultiPanel> tableauPanels = new ArrayList<MultiPanel>();
+        
+        // Define Constraints for Top Cells
+        constraints.fill = 1;
+        constraints.weightx = 50;
+        constraints.weighty = 50;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        
+        // Create Top Cells
         for(int i = 0; i < 4; i++) {
         	freecellPanels.add(new CellPanel(game.getFreeCell().get(i)));
-        	mainPanel.add(freecellPanels.get(i));
+        	freecellPanels.get(i).setBackground(new Color(0, 150, 0));
+        	layout.setConstraints(freecellPanels.get(i), constraints);
+        	constraints.gridx += 1;
+        	c.add(freecellPanels.get(i));
         }
         for(int i = 0; i < 4; i++) {
         	foundationPanels.add(new CellPanel(game.getFoundation().get(i)));
-        	mainPanel.add(foundationPanels.get(i));
+        	foundationPanels.get(i).setBackground(new Color(0, 150, 0));
+        	layout.setConstraints(foundationPanels.get(i), constraints);
+        	constraints.gridx += 1;
+        	c.add(foundationPanels.get(i));
         }
+        
+        // Define constraints for bottom cells
+
+        constraints.weightx = 100;
+        constraints.weighty = 100;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        
+        
+        // Create bottom cells 
         for(int i = 0; i < 8; i++) {
         	tableauPanels.add(new MultiPanel(game.getTableau().get(i)));
-        	mainPanel.add(tableauPanels.get(i));
+        	tableauPanels.get(i).setBackground(new Color(0, 150, 0));
+        	layout.setConstraints(tableauPanels.get(i), constraints);
+        	constraints.gridx += 1;
+        	c.add(tableauPanels.get(i));
         }
-
+        
+        // Create reset button 
         JButton newGameButton = new JButton("New Game");
+        
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2;
+        constraints.gridx = 3;
+        constraints.gridy = 3;
+        layout.setConstraints(newGameButton, constraints);
+        c.add(newGameButton);
+        
+        
+        
+        // New Game Button Listener
         newGameButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
         	game.newGame();
         	FreeCellView.this.repaint();
-        	
-        	//Not needed, just repaint.
-//        	for (int i=0; i< tableauPanels.size(); i++) {
-//        		tableauPanels.get(i).setCell(game.getTableau().get(i));
-//        		}
         	}
         });
-
-        JPanel buttonPanel = new JPanel(new GridLayout(1,3));
-        buttonPanel.add(newGameButton);
-
-        //Container
-        Container c = getContentPane();
-        c.add(headerPanel, BorderLayout.NORTH);
-        c.add(mainPanel, BorderLayout.CENTER);
-        c.add(buttonPanel, BorderLayout.SOUTH);
-
+   
     }
 }

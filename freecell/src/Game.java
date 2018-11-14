@@ -50,7 +50,7 @@ public class Game {
 				tab.add(tempCard);
 			}
 		}
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < 4; i++) {
 			Card tempCard = this.deck.deal();
 			tempCard.turn();
 			tableauList.get(i).add(tempCard);
