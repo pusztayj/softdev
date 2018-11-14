@@ -14,6 +14,7 @@ import java.awt.*;
 public class MultiPanel extends CellPanel {
     /**
      * Constructor for an empty multipanel, displays a wire frame. 
+     * @args - the cell interface
      */
 	public MultiPanel(CellInterface cell) {
 		super(cell);
