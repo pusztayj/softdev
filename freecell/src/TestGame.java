@@ -24,10 +24,10 @@ public class TestGame {
 		FreeCell freecell2 = new FreeCell();
 		FreeCell freecell3 = new FreeCell();
 		FreeCell freecell4 = new FreeCell();
-		Foundations foundations1 = new Foundations(Suit.spade);
-		Foundations foundations2 = new Foundations(Suit.heart);
-		Foundations foundations3 = new Foundations(Suit.diamond);
-		Foundations foundations4 = new Foundations(Suit.club);
+		Foundations foundations1 = new Foundations();
+		Foundations foundations2 = new Foundations();
+		Foundations foundations3 = new Foundations();
+		Foundations foundations4 = new Foundations();
 		ArrayList<Tableau> tableauList = new ArrayList<Tableau>(); 
 		for(int i = 0; i<8; i++) {
 			tableauList.add(new Tableau());

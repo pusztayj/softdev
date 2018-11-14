@@ -33,7 +33,6 @@ public class AbstractCell implements CellInterface {
 	/**
 	 * Returns the last card in the card arraylist (top of pile in game)
 	 */
-	
 	public Card get(int index) {
 		return cards.get(index);
 	}
@@ -57,11 +56,18 @@ public class AbstractCell implements CellInterface {
 	public void add(Card c) {
 		cards.add(c);
 	}
-
+	/**
+     * Checks if the card be removed from a cell
+     * @param cell object
+     */
 	public boolean canMoveFrom(CellInterface fromCell) {
 		return false;
 	}
-	
+	/**
+     * Checks if the card be moved from a cell and then removes the card from the 
+     * cell and adds it to the appropriate cell.
+     * @param card object to add to the list
+     */
 	public boolean moveFrom(CellInterface fromCell) {
 		if (this.canMoveFrom(fromCell)) {
 			this.add(fromCell.remove());
@@ -113,6 +119,9 @@ public class AbstractCell implements CellInterface {
 		this.cards.clear();
 	}
 	
+	/**
+	 * Checks if the cell is empty. 
+	 */	
 	public boolean isEmpty() {
 		return cards.isEmpty();
 	}

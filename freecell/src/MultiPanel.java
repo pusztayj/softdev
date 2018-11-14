@@ -1,12 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class MultiPanel extends CellPanel {
+/**
+ * Represents a playing card with a suit,
+ * rank, image, and face up status.
+ * @author lambertk
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ */
 
+public class MultiPanel extends CellPanel {
+    /**
+     * Constructor for an empty multipanel, displays a wire frame. 
+     */
 	public MultiPanel(CellInterface cell) {
 		super(cell);
 	}
-	
+    /**
+     * Paints the multiple cards face image if cards are present, otherwise, paints the back side image.
+     */
 	 public void paintComponent(Graphics g){
 	    	super.paintComponent(g);
 	    	Icon image;

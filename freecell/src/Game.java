@@ -104,12 +104,25 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Gets the list that holds the information in the tableuax piles.
+	 * @return the tableau list
+	 */
 	public ArrayList<Tableau> getTableau() {
 		return this.tableauList;
 	}
+	/**
+	 * Gets the list that holds the freecells and the information within the list.
+	 * @return the freecell list
+	 */
 	public ArrayList<FreeCell> getFreeCell() {
 		return this.freecellList;
 	}
+	/**
+	 * Gets the list that holds all the foundation piles and the information that lies 
+	 * within those objects. 
+	 * @return the foundations list
+	 */
 	public ArrayList<Foundations> getFoundation() {
 		return this.foundationsList;
 	}

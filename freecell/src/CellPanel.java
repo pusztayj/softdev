@@ -2,6 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * Represents a playing card with a suit,
+ * rank, image, and face up status.
+ * @author lambertk
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ */
+
+/**
  * Represents the GUI component for painting an image of a playing card.
  *
  */

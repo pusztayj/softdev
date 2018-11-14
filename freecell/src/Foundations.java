@@ -28,11 +28,6 @@ public class Foundations extends AbstractCell{
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
 	@Override
 	/**
      * Checks foundations rules that card to add to pile is of

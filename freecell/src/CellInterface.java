@@ -67,6 +67,10 @@ public interface CellInterface extends Iterable<Card>{
      */
     public Card get(int index);
     
+    /**
+     * Gets the card that is at the front of the cards list.
+     * @return last card in the list.
+     */
     public Card get();
 
 }
