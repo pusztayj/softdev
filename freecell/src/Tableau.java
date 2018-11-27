@@ -59,6 +59,39 @@ public class Tableau extends AbstractCell{
 	}
 	
 	
+	public boolean moveFrom(CellInterface fromCell) {
+		if (this.canMoveFrom(fromCell)) {
+			if (fromCell.getClass().equals(this.getClass())){
+				// Loop logic goes here 
+				int i = fromCell.size() -1;
+				int pointer;
+				while (i >= 1) {
+					Card currentCard = fromCell.get(i);
+					Card nextCard = fromCell.get(i - 1);
+					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
+						pointer = i - 1;
+					}
+					else {
+						break;
+					}
+				}
+				for (; i < fromCell.size(); i++) {
+					this.add(fromCell.remove(i));
+				}
+				return true;
+				
+			}
+			else {
+				this.add(fromCell.remove());
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+
+	
 	/**
      * Removes the last card in the list
      * @return card on top of the pile
@@ -66,5 +99,9 @@ public class Tableau extends AbstractCell{
 	@Override
 	public Card remove() {
 		return this.cards.remove(this.size() -1);
+	}
+	
+	public Card remove(int index) {
+		return this.cards.remove(index);
 	}
 }

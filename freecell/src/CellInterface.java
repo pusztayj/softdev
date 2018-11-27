@@ -60,6 +60,7 @@ public interface CellInterface extends Iterable<Card>{
      */
     public Card remove();
     
+    public Card remove(int index);
     
     /**
      * Looks at the last card in the list but does not remove it from the list

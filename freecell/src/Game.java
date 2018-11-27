@@ -84,7 +84,7 @@ public class Game {
 	 * @param toCell - cell subclass typecast as AbstractCell
 	 */
 	public boolean move(CellInterface fromCell, CellInterface toCell) {
-		return toCell.canMoveFrom(fromCell);
+		return toCell.moveFrom(fromCell);
 	}
 	/**
 	 * Creates a new game. Clears all the cards in the piles and redistributes a shuffled deck

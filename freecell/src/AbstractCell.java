@@ -88,6 +88,10 @@ public class AbstractCell implements CellInterface {
 	/**
      * Throws an exception by default on removing a card
      */
+	public Card remove(int i) {
+		throw new UnsupportedOperationException("Remove not supported");
+	}
+	
 	public Card remove() {
 		throw new UnsupportedOperationException("Remove not supported");
 	}
