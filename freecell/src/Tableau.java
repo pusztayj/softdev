@@ -58,6 +58,14 @@ public class Tableau extends AbstractCell{
 		}
 	}
 	
+	public boolean canMoveFrom(CellInterface fromCell) {
+		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	public boolean moveFrom(CellInterface fromCell) {
 		if (this.canMoveFrom(fromCell)) {
