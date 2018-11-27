@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Represents the GUI component for painting an image of a playing card.
@@ -10,7 +11,7 @@ import java.awt.*;
  * @version 1.0
  */
 
-public class CellPanel extends JPanel{
+public class CellPanel extends JPanel implements MouseListener{
 
     protected CellInterface panelCell;
 
@@ -20,6 +21,7 @@ public class CellPanel extends JPanel{
     public CellPanel(CellInterface cell){
         panelCell = cell;
         setBackground(new Color(0, 150, 0));
+        addMouseListener(this);
     }
 
     /**
@@ -27,6 +29,13 @@ public class CellPanel extends JPanel{
      * otherwise, paints the back side image.
      * @param g - the graphics
      */
+    
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+    
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
     	Icon image;
