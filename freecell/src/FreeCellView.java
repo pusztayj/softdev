@@ -17,10 +17,13 @@ public class FreeCellView extends JFrame{
 
     private Game game;
 
+
     /**
      * Sets up the display (panels, buttons, and labels) for the game of war
      * @param game - the WarGame object
      */
+    
+   
     public FreeCellView(Game game){
         this.game = game;
         this.setTitle("Free Cell");
