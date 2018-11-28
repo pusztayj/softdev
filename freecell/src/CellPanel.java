@@ -14,7 +14,7 @@ import java.awt.event.*;
 public class CellPanel extends JPanel implements MouseListener{
 
     protected CellInterface panelCell;
-    private AbstractCell fromCell;
+    private CellInterface fromCell;
 
     /**
      * Constructor for an empty panel, displays a wire frame. 
@@ -35,7 +35,14 @@ public class CellPanel extends JPanel implements MouseListener{
     public void mouseClicked(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    	Component comp = e.getComponent();
+    	if(fromCell == null) {
+    		Component firstClicked = comp;
+    		fromCell = ((CellPanel)comp).getCell();
+    		
+    	}
+    }
     
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
