@@ -17,28 +17,45 @@ public class FreeCellView extends JFrame{
 
     private Game game;
 
-    private CellInterface firstClick;
+    private AbstractPanel firstClick;
     
-    private class ViewInformer{
+    private AppViewInformer vi;
+    
+    
+    private class AppViewInformer implements ViewInformer{
+
     	  	
-    	public void panelPressed(CellPanel panel) {
+    	public void panelPressed(AbstractPanel panel) {
     		if(firstClick == null) {
-    	    	firstClick = (panel).getCell();
-    	    	//System.out.println("CLICKED");
+    			System.out.println("First click is null");
+    	    	firstClick = panel;
+    	    	
     		}
-    	    else if (!(firstClick == null)){
-    	    	CellInterface secondClick = (panel).getCell();
-    	    	if(game.move(firstClick, secondClick)) {
+    		else if (firstClick == panel){
+    			System.out.println("First click is Same");
+    			firstClick = null;
+    		}
+    		
+    	    else {
+    	    	AbstractPanel secondClick = panel;
+    	    	System.out.println("First click is different");
+    	    	if(game.move(firstClick.getCell(), secondClick.getCell())) {
+    	    		firstClick.repaint();
+    	    		secondClick.repaint();
+    	    		firstClick = null;
+    	    	
         	    	if(game.gameHasWinner()) {
-        	    		
+        	    		JOptionPane.showMessageDialog(null,"Congratulations! You won!");
         	    	}
         	    	else if (game.gameHasLoser()) {
         	    		//Insert pop up for losing
+        	    		JOptionPane.showMessageDialog(null,"No more you possible moves!");
         	    	}
-        	    	firstClick = null;
         	    }
     	    	else {
-    	    		//Insert method for popup for illegal move
+    	    		JOptionPane.showMessageDialog(null,"Illegal move!");
+    	    		firstClick = null;
+
     	    	}
     	    }
     	}
@@ -58,6 +75,7 @@ public class FreeCellView extends JFrame{
         Container c = getContentPane();
         GridBagLayout layout = new GridBagLayout();
         c.setLayout(layout);
+        AppViewInformer vi = new AppViewInformer();
         
         
         // Define Constraints for Top Labels
@@ -99,14 +117,14 @@ public class FreeCellView extends JFrame{
         
         // Create Top Cells
         for(int i = 0; i < 4; i++) {
-        	freecellPanels.add(new CellPanel(game.getFreeCell().get(i)));
+        	freecellPanels.add(new CellPanel(game.getFreeCell().get(i), vi));
         	freecellPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(freecellPanels.get(i), constraints);
         	constraints.gridx += 1;
         	c.add(freecellPanels.get(i));
         }
         for(int i = 0; i < 4; i++) {
-        	foundationPanels.add(new CellPanel(game.getFoundation().get(i)));
+        	foundationPanels.add(new CellPanel(game.getFoundation().get(i), vi));
         	foundationPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(foundationPanels.get(i), constraints);
         	constraints.gridx += 1;
@@ -123,7 +141,7 @@ public class FreeCellView extends JFrame{
         
         // Create bottom cells 
         for(int i = 0; i < 8; i++) {
-        	tableauPanels.add(new MultiPanel(game.getTableau().get(i)));
+        	tableauPanels.add(new MultiPanel(game.getTableau().get(i), vi));
         	tableauPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(tableauPanels.get(i), constraints);
         	constraints.gridx += 1;
@@ -147,8 +165,8 @@ public class FreeCellView extends JFrame{
         newGameButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
         	game.newGame();
+        	firstClick = null;
         	FreeCellView.this.repaint();
-        	JOptionPane.showMessageDialog(null,"Work?");
         	}
         });
         
@@ -171,5 +189,7 @@ public class FreeCellView extends JFrame{
     public void illegalMove() {
     	JOptionPane.showMessageDialog(null,"Illegal move!");
     }
+    
+
 }
 

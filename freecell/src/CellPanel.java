@@ -11,18 +11,14 @@ import java.awt.event.*;
  * @version 1.0
  */
 
-public class CellPanel extends JPanel implements MouseListener{
+public class CellPanel extends AbstractPanel {
 
-    protected CellInterface panelCell;
-    private AbstractCell fromCell;
 
     /**
      * Constructor for an empty panel, displays a wire frame. 
      */
-    public CellPanel(CellInterface cell){
-        panelCell = cell;
-        setBackground(new Color(0, 150, 0));
-        addMouseListener(this);
+    public CellPanel(CellInterface cell, ViewInformer v){
+    	super(cell, v);
     }
 
     /**
@@ -30,12 +26,6 @@ public class CellPanel extends JPanel implements MouseListener{
      * otherwise, paints the back side image.
      * @param g - the graphics
      */
-    
-    public void mouseReleased(MouseEvent e) {}
-    public void mouseClicked(MouseEvent e) {}
-    public void mouseEntered(MouseEvent e) {}
-    public void mouseExited(MouseEvent e) {}
-    public void mousePressed(MouseEvent e) {}
     
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
@@ -73,20 +63,5 @@ public class CellPanel extends JPanel implements MouseListener{
     //		int x = ((getWidth() - image.getIconWidth()) / 2);
     		image.paintIcon(this, g, x, y);
     	}
-    }
-    /**
-     * gets a panel cell from the model
-     * @return panelCell - the cell you are getting 
-     */
-    public CellInterface getCell() {
-    	return panelCell;
-    }
-    /**
-     * updates the cell display in the view by repainting it
-     *  @param c - the cell to update the display of
-     */
-    public void setCell(CellInterface c) {
-    	panelCell = c;
-    	repaint();
     }
 }

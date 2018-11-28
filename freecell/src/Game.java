@@ -84,6 +84,8 @@ public class Game {
 	 * @param toCell - cell subclass typecast as AbstractCell
 	 */
 	public boolean move(CellInterface fromCell, CellInterface toCell) {
+		System.out.println(fromCell);
+		System.out.println(toCell);
 		return toCell.moveFrom(fromCell);
 	}
 	/**

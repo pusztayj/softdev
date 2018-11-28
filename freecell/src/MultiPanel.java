@@ -11,14 +11,14 @@ import java.awt.*;
  * @author brandl
  */
 
-public class MultiPanel extends CellPanel {
+public class MultiPanel extends AbstractPanel {
 
     /**
      * Constructor for an empty multipanel, displays a wire frame. 
      * @param cell - the cell 
 	 */
-	public MultiPanel(CellInterface cell) {
-		super(cell);
+	public MultiPanel(CellInterface cell, ViewInformer v) {
+		super(cell, v);
 	}
     /**
      * Paints the multiple cards face image if cards are present,
@@ -33,7 +33,7 @@ public class MultiPanel extends CellPanel {
 	    	int y = 8; 
 	    	
 	    	
-	    	if ((panelCell == null) || (panelCell.isEmpty())){
+	    	if ((panelCell == null) || panelCell.isEmpty()){
 	    		image = Card.getBack();
 	    		g.setColor(Color.yellow);
 	    		int x = ((getWidth() - image.getIconWidth()) / 2);
@@ -47,7 +47,7 @@ public class MultiPanel extends CellPanel {
 	    	
 	    	else{
 	    		
-	    		for (int i = 0; i < panelCell.size()-1; i++) {
+	    		for (int i = 0; i < panelCell.size(); i++) {
 	    			y += 30;
 	    			Card displayCard = panelCell.get(i);
 	    			image = displayCard.getImage();
@@ -56,5 +56,6 @@ public class MultiPanel extends CellPanel {
 	    		}
 	    		
 	    	}
+	    	
 	    }
 }

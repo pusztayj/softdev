@@ -50,6 +50,15 @@ public class FreeCell extends AbstractCell{
 		}
 	}
 	
+	public boolean canMoveFrom(CellInterface fromCell) {
+		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	@Override
 	/**
      * Removes the last card in the list

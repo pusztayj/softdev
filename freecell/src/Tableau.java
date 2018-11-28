@@ -62,6 +62,7 @@ public class Tableau extends AbstractCell{
 		
 		//check if fromCell is a Tableau
 		if (fromCell.getClass().equals(this.getClass()) && fromCell.canRemoveFrom()) {
+			System.out.println("Both tableaus");
 			int i = fromCell.size() - 1;
 			int pointer = 100;
 			while (i >= 1) {
@@ -82,6 +83,7 @@ public class Tableau extends AbstractCell{
 
 		}
 		else {
+			System.out.println("Not both tableaus");
 			if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
 				return true;
 			}
