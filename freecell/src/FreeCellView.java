@@ -17,7 +17,34 @@ public class FreeCellView extends JFrame{
 
     private Game game;
 
-
+    private CellInterface firstClick;
+    
+    private class ViewInformer{
+    	
+    	public void panelPressed(CellPanel panel) {
+    		if(firstClick == null) {
+    	    	firstClick = (panel).getCell();
+    	    	//System.out.println("CLICKED");
+    		}
+    	    else if (!(firstClick == null)){
+    	    	CellInterface secondClick = (panel).getCell();
+    	    	if(game.move(firstClick, secondClick)) {
+        	    	if(game.gameHasWinner()) {
+        	    		//Insert method for popup here
+        	    	}
+        	    	else if (game.gameHasLoser()) {
+        	    		//Insert pop up for losing
+        	    	}
+        	    	firstClick = null;
+        	    }
+    	    	else {
+    	    		//Insert method for popup for illegal move
+    	    	}
+    	    }
+    	}
+    }
+    
+    
     /**
      * Sets up the display (panels, buttons, and labels) for the game of war
      * @param game - the WarGame object
