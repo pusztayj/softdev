@@ -104,7 +104,7 @@ public class Card implements Comparable<Card>{
      * @return a string of black or red for the color of the card
      */
     public String getColor() {
-    	if (this.getSuit() == Suit.club || this.getSuit() == Suit.diamond) {
+    	if (this.getSuit() == Suit.club || this.getSuit() == Suit.spade) {
     		return "black";
     	}
     	else {
