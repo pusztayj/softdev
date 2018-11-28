@@ -59,12 +59,38 @@ public class Tableau extends AbstractCell{
 	}
 	
 	public boolean canMoveFrom(CellInterface fromCell) {
-		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
-			return true;
+		
+		//check if fromCell is a Tableau
+		if (fromCell.getClass().equals(this.getClass()) && fromCell.canRemoveFrom()) {
+			int i = fromCell.size() - 1;
+			int pointer = 100;
+			while (i >= 1) {
+				Card currentCard = fromCell.get(i);
+				Card nextCard = fromCell.get(i - 1);
+				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1) {
+					pointer = i - 1;
+				}
+				else {
+					break;
+				}	
+			}
+			if (pointer != 100) {
+				Card firstAddedCard = fromCell.get(pointer);
+				return this.canAddTo(firstAddedCard);
+			}
+			return false;
+
 		}
 		else {
-			return false;
+			if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
+				return true;
+			}
+			else {
+				return false;
+			}
+	
 		}
+	
 	}
 	
 	public boolean moveFrom(CellInterface fromCell) {

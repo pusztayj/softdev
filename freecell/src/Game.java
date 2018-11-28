@@ -114,6 +114,37 @@ public class Game {
 		}
 		return true;
 	}
+	
+	public boolean gameHasLoser() {
+		for (FreeCell fcpile : freecellList) {
+			if (!(fcpile.size() == 1)) {
+				return false;
+			}
+			for (Tableau tabpile : tableauList) {
+				if (tabpile.canMoveFrom(fcpile)) {
+					return false;
+				}
+			}
+			for (Foundations foundPile : foundationsList) {
+				if (foundPile.canMoveFrom(fcpile)) {
+					return false;
+				}
+			}
+		}
+		for (Tableau tabpile : tableauList) {
+			for (Foundations foundPile : foundationsList) {
+				if (foundPile.canMoveFrom(tabpile)) {
+					return false;
+				}
+			}
+			for (Tableau tabpile2 : tableauList) {
+				if (tabpile2.canMoveFrom(tabpile)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	
 	/**
