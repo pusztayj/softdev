@@ -20,7 +20,7 @@ public class FreeCellView extends JFrame{
     private CellInterface firstClick;
     
     private class ViewInformer{
-    	
+    	  	
     	public void panelPressed(CellPanel panel) {
     		if(firstClick == null) {
     	    	firstClick = (panel).getCell();
@@ -30,7 +30,7 @@ public class FreeCellView extends JFrame{
     	    	CellInterface secondClick = (panel).getCell();
     	    	if(game.move(firstClick, secondClick)) {
         	    	if(game.gameHasWinner()) {
-        	    		//Insert method for popup here
+        	    		
         	    	}
         	    	else if (game.gameHasLoser()) {
         	    		//Insert pop up for losing
@@ -148,8 +148,28 @@ public class FreeCellView extends JFrame{
         public void actionPerformed(ActionEvent e) {
         	game.newGame();
         	FreeCellView.this.repaint();
+        	JOptionPane.showMessageDialog(null,"Work?");
         	}
         });
-   
+        
+    }
+    /**
+     * Generates a popup telling the player they won.
+     */
+    public void gameWon() {
+    	JOptionPane.showMessageDialog(null,"Congratulations! You won!");
+    }
+    /**
+     * Generates a pop up telling the player that they lost.
+     */
+    public void gameLost() {
+    	JOptionPane.showMessageDialog(null,"No more you possible moves!");
+    }
+    /**
+     * Generates a pop up to tell the player that move is illegal
+     */
+    public void illegalMove() {
+    	JOptionPane.showMessageDialog(null,"Illegal move!");
     }
 }
+
