@@ -35,26 +35,42 @@ public class CellPanel extends JPanel implements MouseListener{
     public void mouseClicked(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {}
     
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
     	Icon image;
     	
-    	// initial y placement of 0
-    	int y = 0;
+    	// initial y placement of 4
+    	int y = 8;
     	
     	
     	if ((panelCell == null) || (panelCell.isEmpty())){
     		image = Card.getBack();
     		g.setColor(Color.yellow);
-    		int x = (getWidth() - image.getIconWidth()) / 2;
-    		g.drawRect(x, y, image.getIconWidth(), image.getIconHeight());
+    		int x = ((getWidth() - image.getIconWidth()) / 2);
+    		g.drawRect(x - 4, y - 4, image.getIconWidth() + 8, 
+    				image.getIconHeight() + 8);
+    		
+    		g.setColor(Color.orange);
+    		g.drawRect(x - 3, y - 3, image.getIconWidth() + 6, 
+    				image.getIconHeight() + 6);
     	}
     	else{
+    		image = Card.getBack();
+    		g.setColor(Color.yellow);
+    		int x = ((getWidth() - image.getIconWidth()) / 2);
+    		g.drawRect(x - 4, y - 4, image.getIconWidth() + 8, 
+    				image.getIconHeight() + 8 + ((panelCell.size()-1) * 30));
+    		
+    		g.setColor(Color.orange);
+    		g.drawRect(x - 3, y - 3, image.getIconWidth() + 6, 
+    				image.getIconHeight() + 6 + ((panelCell.size()-1) * 30));
+    		
     		Card topCard = panelCell.get();
     		//topCard.turn();
     		image = topCard.getImage();
-    		int x = (getWidth() - image.getIconWidth()) / 2;
+    //		int x = ((getWidth() - image.getIconWidth()) / 2);
     		image.paintIcon(this, g, x, y);
     	}
     }

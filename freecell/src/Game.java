@@ -104,6 +104,18 @@ public class Game {
 		
 	}
 	
+	
+	public boolean gameHasWinner() {
+		for (Foundations foundPile : foundationsList) {
+			if (!(foundPile.size() ==13)) {
+				return false;
+			}
+		
+		}
+		return true;
+	}
+
+	
 	/**
 	 * Gets the list that holds the information in the tableuax piles.
 	 * @return the tableau list
