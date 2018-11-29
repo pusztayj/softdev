@@ -27,18 +27,18 @@ public class FreeCellView extends JFrame{
     	  	
     	public void panelPressed(AbstractPanel panel) {
     		if(firstClick == null) {
-    			System.out.println("First click is null");
+
     	    	firstClick = panel;
     	    	
     		}
     		else if (firstClick == panel){
-    			System.out.println("First click is Same");
+
     			firstClick = null;
     		}
     		
     	    else {
     	    	AbstractPanel secondClick = panel;
-    	    	System.out.println("First click is different");
+
     	    	if(game.move(firstClick.getCell(), secondClick.getCell())) {
     	    		firstClick.repaint();
     	    		secondClick.repaint();

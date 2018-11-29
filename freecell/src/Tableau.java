@@ -29,6 +29,9 @@ public class Tableau extends AbstractCell{
      */
 	public boolean canAddTo(Card card) {
 		if (cards.size() < maxSize){
+			if (this.isEmpty()) {
+				return true;
+			}
 			Card topCard = this.cards.get(this.cards.size() -1);
 			if (topCard.sameColor(card) || topCard.compareTo(card) != 1) {
 				return false;
@@ -63,9 +66,11 @@ public class Tableau extends AbstractCell{
 		
 		//check if fromCell is a Tableau
 		if (fromCell.getClass().equals(this.getClass()) && fromCell.canRemoveFrom()) {
-			System.out.println("Both tableaus");
 			int i = fromCell.size() - 1;
 			Card fromCard = fromCell.get(i);
+			if (this.isEmpty()) {
+				return true;
+			}
 			Card thisCard = this.get(this.size() -1);
 			if (!(fromCard.sameColor(thisCard)) && fromCard.compareTo(thisCard) == -1 ) {
 				return true;
@@ -92,7 +97,6 @@ public class Tableau extends AbstractCell{
 
 		}
 		else {
-			System.out.println("Not both tableaus");
 			if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
 				return true;
 			}
@@ -108,14 +112,48 @@ public class Tableau extends AbstractCell{
 		if (this.canMoveFrom(fromCell)) {
 			if (fromCell.getClass().equals(this.getClass())){
 				// Loop logic goes here
+				
 				int i = fromCell.size() - 1;
+
+				//logic for adding pile to empty card
+				if (this.isEmpty()) {
+					int pointer = 100;
+					while (i >= 1) {
+						Card currentCard = fromCell.get(i);
+						Card nextCard = fromCell.get(i - 1);
+						if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
+							pointer = i - 1;
+							i--;
+						}
+						else {
+							break;
+						}
+					}
+					ArrayList<Card> addList = new ArrayList<Card>();
+					for (; pointer < fromCell.size(); pointer++) {
+						addList.add(fromCell.get(pointer));
+					}
+					for (Card card : addList) {
+						this.add(card);
+					}
+					for (int x = 0; x < addList.size(); x++) {
+						fromCell.remove();
+					}
+					return true;
+					
+				}
+				
+				//logic for when only bottom card can be moved
 				Card fromCard = fromCell.get(i);
 				Card thisCard = this.get(this.size() -1);
 				if (!(fromCard.sameColor(thisCard)) && fromCard.compareTo(thisCard) == -1 ) {
 					this.add(fromCell.remove(i));
 					return true;
 				}
+				
+				//logic for moving multiple cards
 				int pointer = 100;
+				i = fromCell.size() - 1;
 				while (i >= 1) {
 					Card currentCard = fromCell.get(i);
 					Card nextCard = fromCell.get(i - 1);
