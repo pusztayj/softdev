@@ -114,6 +114,7 @@ public class Tableau extends AbstractCell{
 				// Loop logic goes here
 				
 				int i = fromCell.size() - 1;
+				
 
 				//logic for adding pile to empty card
 				if (this.isEmpty()) {
@@ -124,6 +125,10 @@ public class Tableau extends AbstractCell{
 						if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
 							pointer = i - 1;
 							i--;
+						}
+						else if (i == fromCell.size() - 1 ){
+							pointer = fromCell.size() - 1;
+							break;
 						}
 						else {
 							break;
