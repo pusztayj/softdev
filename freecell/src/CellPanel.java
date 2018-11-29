@@ -31,7 +31,7 @@ public class CellPanel extends AbstractPanel {
     	super.paintComponent(g);
     	Icon image;
     	
-    	// initial y placement of 4
+    	// initial y placement of 8
     	int y = 8;
     	
     	
@@ -51,16 +51,16 @@ public class CellPanel extends AbstractPanel {
     		g.setColor(Color.yellow);
     		int x = ((getWidth() - image.getIconWidth()) / 2);
     		g.drawRect(x - 4, y - 4, image.getIconWidth() + 8, 
-    				image.getIconHeight() + 8 + ((panelCell.size()-1) * 30));
+    				image.getIconHeight() + 8);
     		
     		g.setColor(Color.orange);
     		g.drawRect(x - 3, y - 3, image.getIconWidth() + 6, 
-    				image.getIconHeight() + 6 + ((panelCell.size()-1) * 30));
+    				image.getIconHeight() + 6);
     		
     		Card topCard = panelCell.get();
-    		//topCard.turn();
+
     		image = topCard.getImage();
-    //		int x = ((getWidth() - image.getIconWidth()) / 2);
+
     		image.paintIcon(this, g, x, y);
     	}
     }

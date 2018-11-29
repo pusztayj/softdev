@@ -45,11 +45,11 @@ public class FreeCellView extends JFrame{
     	    		firstClick = null;
     	    	
         	    	if(game.gameHasWinner()) {
-        	    		JOptionPane.showMessageDialog(null,"Congratulations! You won!");
+        	    		JOptionPane.showMessageDialog(null,"Congratulations! You have won!");
         	    	}
         	    	else if (game.gameHasLoser()) {
         	    		//Insert pop up for losing
-        	    		JOptionPane.showMessageDialog(null,"No more you possible moves!");
+        	    		JOptionPane.showMessageDialog(null,"You have lost. No more possible moves!");
         	    	}
         	    }
     	    	else {

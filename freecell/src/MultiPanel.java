@@ -29,7 +29,7 @@ public class MultiPanel extends AbstractPanel {
 	    	super.paintComponent(g);
 	    	Icon image;
 	    	
-	    	// initial y placement of 4
+	    	// initial y placement of 8
 	    	int y = 8; 
 	    	
 	    	
@@ -46,15 +46,24 @@ public class MultiPanel extends AbstractPanel {
 	    	}
 	    	
 	    	else{
+	    		g.setColor(Color.yellow);
+	    		image = Card.getBack();
+        	    int x = ((getWidth() - image.getIconWidth()) / 2);
+        		g.drawRect(x - 4, y - 4, image.getIconWidth() + 8, 
+        				image.getIconHeight() + 8 + ((panelCell.size()-1) * 30));
+        		
+        		g.setColor(Color.orange);
+        		g.drawRect(x - 3, y - 3, image.getIconWidth() + 6, 
+        				image.getIconHeight() + 6 + ((panelCell.size()-1) * 30));
 	    		
 	    		for (int i = 0; i < panelCell.size(); i++) {
-	    			y += 30;
 	    			Card displayCard = panelCell.get(i);
 	    			image = displayCard.getImage();
-	    			int x = (getWidth() - image.getIconWidth()) / 2;
 	    			image.paintIcon(this,  g,  x, y);
+	    			y += 30;
+
 	    		}
-	    		
+
 	    	}
 	    	
 	    }
