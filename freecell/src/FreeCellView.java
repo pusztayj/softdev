@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The main window for dealing from a deck of cards.
@@ -73,7 +74,7 @@ public class FreeCellView extends JFrame{
         this.game = game;
         ai = new FreeCellAI(game);
         this.setTitle("Free Cell");
-        this.setBackground(new Color(0, 150, 0));
+        //this.setBackground(new Color(0, 150, 0));
         Container c = getContentPane();
         GridBagLayout layout = new GridBagLayout();
         c.setLayout(layout);
@@ -153,6 +154,7 @@ public class FreeCellView extends JFrame{
         // Create reset button 
         JButton newGameButton = new JButton("New Game");
         JButton hint = new JButton("Hint");
+        JButton newBackground = new JButton("New Background");
         
         constraints.weightx = 0;
         constraints.weighty = 0;
@@ -170,16 +172,25 @@ public class FreeCellView extends JFrame{
         layout.setConstraints(hint, constraints);
         c.add(hint);
         
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        layout.setConstraints(newBackground, constraints);
+        c.add(newBackground);
+        
         
         // New Game Button Listener
         newGameButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-        	game.newGame();
-        	firstClick = null;
-        	FreeCellView.this.repaint();
-        	}
-        });
+	        public void actionPerformed(ActionEvent e) {
+	        	game.newGame();
+	        	firstClick = null;
+	        	FreeCellView.this.repaint();
+	        	}
+	        });
         
+      //Hint Button Listener
         hint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	//ai.generateMoves();
@@ -187,6 +198,100 @@ public class FreeCellView extends JFrame{
             	FreeCellView.this.repaint();
             	}
             });
+        
+        //New Background Button Listener
+        newBackground.addActionListener(new ActionListener() {
+        	int counter = 0;
+        	public void actionPerformed(ActionEvent e) {
+    			Random rand = new Random();
+        		counter++;
+        		if (counter > 7)
+        			counter = 1;
+        		// First Alternate Color: Blue
+        		if (counter == 1) {
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(0, 0, 150));
+        	        	foundationPanels.get(i).setBackground(new Color(0, 0, 150));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(0, 0, 150));
+        	        }
+        			
+        		}
+        		//Second Alternate Color: Red
+        		else if (counter == 2) {
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(150, 0, 0));
+        	        	foundationPanels.get(i).setBackground(new Color(150, 0, 0));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(150, 0, 0));
+        	        }
+				}
+        		//Third Alternate Color: Random Green
+        		else if (counter == 3) {
+        			int n1 = rand.nextInt(25) + 1;
+        			int n2 = rand.nextInt(150) + 1;
+        			int n3 = rand.nextInt(25) + 1;
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        	foundationPanels.get(i).setBackground(new Color(n1, n2, n3));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        }
+				}
+        		
+        		//Fourth Alternate Color: Random Blue
+        		else if (counter == 4) {
+        			int n1 = rand.nextInt(25) + 1;
+        			int n2 = rand.nextInt(25) + 1;
+        			int n3 = rand.nextInt(150) + 1;
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        	foundationPanels.get(i).setBackground(new Color(n1, n2, n3));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        }
+				}
+        		
+        		//Fifth Alternate Color: Random Red
+        		else if (counter == 5) {
+        			int n1 = rand.nextInt(150) + 1;
+        			int n2 = rand.nextInt(25) + 1;
+        			int n3 = rand.nextInt(25) + 1;
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        	foundationPanels.get(i).setBackground(new Color(n1, n2, n3));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(n1, n2, n3));
+        	        }
+				}
+        		//Sixth Alternate Color: Black
+        		else if (counter == 6) {
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(0, 0, 0));
+        	        	foundationPanels.get(i).setBackground(new Color(0, 0, 0));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(0, 0, 0));
+        	        }
+				}
+        		
+        		//Revert back to Green
+        		else {
+        			for(int i = 0; i < 4; i++) {
+        	        	freecellPanels.get(i).setBackground(new Color(0, 150, 0));
+        	        	foundationPanels.get(i).setBackground(new Color(0, 150, 0));
+        			}
+        	        for(int i = 0; i < 8; i++) {
+        	           	tableauPanels.get(i).setBackground(new Color(0, 150, 0));
+        	        }
+				}
+			        	}
+			        });
         
     }
     /**
@@ -210,4 +315,3 @@ public class FreeCellView extends JFrame{
     
 
 }
-
