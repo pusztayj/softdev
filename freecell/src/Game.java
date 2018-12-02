@@ -87,7 +87,7 @@ public class Game {
 	public boolean move(CellInterface fromCell, CellInterface toCell) {
 		if (toCell.moveFrom(fromCell)) {
 			moveCount ++;
-			System.out.println(moveCount);
+			//System.out.println(moveCount);
 			return true;
 		}
 		else {

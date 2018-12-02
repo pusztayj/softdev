@@ -28,7 +28,6 @@ public class FreeCell extends AbstractCell{
 			return true;
 		}
 		else {
-			System.out.println("A card already exists in this free cell");
 			return false;
 		}
 	}

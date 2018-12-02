@@ -20,6 +20,7 @@ public class FreeCellView extends JFrame{
     private AbstractPanel firstClick;
     
     private AppViewInformer vi;
+    private FreeCellAI ai;
     
     
     private class AppViewInformer implements ViewInformer{
@@ -70,6 +71,7 @@ public class FreeCellView extends JFrame{
    
     public FreeCellView(Game game){
         this.game = game;
+        ai = new FreeCellAI(game);
         this.setTitle("Free Cell");
         this.setBackground(new Color(0, 150, 0));
         Container c = getContentPane();
@@ -150,6 +152,7 @@ public class FreeCellView extends JFrame{
         
         // Create reset button 
         JButton newGameButton = new JButton("New Game");
+        JButton hint = new JButton("Hint");
         
         constraints.weightx = 0;
         constraints.weighty = 0;
@@ -159,6 +162,13 @@ public class FreeCellView extends JFrame{
         layout.setConstraints(newGameButton, constraints);
         c.add(newGameButton);
         
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2;
+        constraints.gridx = 5;
+        constraints.gridy = 3;
+        layout.setConstraints(hint, constraints);
+        c.add(hint);
         
         
         // New Game Button Listener
@@ -169,6 +179,14 @@ public class FreeCellView extends JFrame{
         	FreeCellView.this.repaint();
         	}
         });
+        
+        hint.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	//ai.generateMoves();
+            	ai.executeMove();
+            	FreeCellView.this.repaint();
+            	}
+            });
         
     }
     /**
