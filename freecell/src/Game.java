@@ -16,6 +16,7 @@ public class Game {
 	private ArrayList<Tableau> tableauList;
 	private ArrayList<FreeCell> freecellList;
 	private ArrayList<Foundations> foundationsList;
+	private int moveCount = 0;
 
 	/**
      * Constructor for the game that creates all of the piles, the deck and distributes the 
@@ -84,11 +85,14 @@ public class Game {
 	 * @param toCell - cell subclass typecast as AbstractCell
 	 */
 	public boolean move(CellInterface fromCell, CellInterface toCell) {
-//		System.out.println(fromCell.getClass());
-//		System.out.println(fromCell);
-//		System.out.println(toCell.getClass());
-//		System.out.println(toCell);
-		return toCell.moveFrom(fromCell);
+		if (toCell.moveFrom(fromCell)) {
+			moveCount ++;
+			System.out.println(moveCount);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	/**
 	 * Creates a new game. Clears all the cards in the piles and redistributes a shuffled deck
