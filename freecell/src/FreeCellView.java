@@ -17,11 +17,10 @@ import java.util.Random;
 public class FreeCellView extends JFrame{
 
     private Game game;
-
     private AbstractPanel firstClick;
-    
     private AppViewInformer vi;
     private FreeCellAI ai;
+    private JLabel moveCounter;
     
     
     private class AppViewInformer implements ViewInformer{
@@ -44,6 +43,7 @@ public class FreeCellView extends JFrame{
     	    	if(game.move(firstClick.getCell(), secondClick.getCell())) {
     	    		firstClick.repaint();
     	    		secondClick.repaint();
+    	    		moveCounter.setText("Move Count: " + game.getMoves());
     	    		firstClick = null;
     	    	
         	    	if(game.gameHasWinner()) {
@@ -96,6 +96,11 @@ public class FreeCellView extends JFrame{
         layout.setConstraints(freeCellLabel, constraints);
         c.add(freeCellLabel);
         
+        moveCounter = new JLabel("Move Count: " + game.getMoves());
+        constraints.gridx = 2;
+        constraints.gridy = 0;
+        layout.setConstraints(moveCounter, constraints);
+        c.add(moveCounter);
         
         JLabel homeCellLabel = new JLabel("Home Cells");
         constraints.gridx = 4;
@@ -181,21 +186,24 @@ public class FreeCellView extends JFrame{
         c.add(newBackground);
         
         
+        
         // New Game Button Listener
         newGameButton.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	game.newGame();
 	        	firstClick = null;
 	        	FreeCellView.this.repaint();
+	        	moveCounter.setText("Move Count: " + game.getMoves());
 	        	}
 	        });
         
-      //Hint Button Listener
+        //Hint Button Listener
         hint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	//ai.generateMoves();
             	ai.executeMove();
             	FreeCellView.this.repaint();
-            	
+	        	moveCounter.setText("Move Count: " + game.getMoves());
             	}
             });
         
@@ -292,6 +300,8 @@ public class FreeCellView extends JFrame{
 				}
 			        	}
 			        });
+        
+    
         
     }
     /**

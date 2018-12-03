@@ -66,8 +66,7 @@ public class Tableau extends AbstractCell{
 		}
 	}
 	
-	public boolean canMoveFrom(CellInterface fromCell) {
-		
+	public boolean canMoveFrom(CellInterface fromCell) {		
 		//check if fromCell is a Tableau
 		if (fromCell.getClass().equals(this.getClass()) && fromCell.canRemoveFrom()) {
 			int i = fromCell.size() - 1;
@@ -117,10 +116,7 @@ public class Tableau extends AbstractCell{
 		if (this.canMoveFrom(fromCell)) {
 			if (fromCell.getClass().equals(this.getClass())){
 				// Loop logic goes here
-				
 				int i = fromCell.size() - 1;
-				
-
 				//logic for adding pile to empty card
 				if (this.isEmpty()) {
 					int pointer = 100;

@@ -22,87 +22,44 @@ public class Move {
 		return tempList.toString();
 		
 	}
-	/*
-	 * Returns the length of a spine.
-	 */
-//	public Integer getSpineLength(CellInterface cell) {
-//		Integer spineLength = 1;
-//		for(int x = cell.size()-1; x >= 0; x--) {
-//			if(x == 0) {
-//				break;
-//			}
-//			int topRank = cell.get(x).getRank();
-//			String topColor = cell.get(x).getColor();
-//			int bRank = cell.get(x-1).getRank();
-//			String bColor = cell.get(x-1).getColor();
-//			if(topColor != bColor) {
-//				if(bRank - topRank == 1) {
-//					spineLength++;
-//					//System.out.println(x);
-//				}
-//				else {
-//					break;
-//				}
-//			}
-//			else {
-//				break;
-//			}
-//		}
-//		return spineLength;
-//	}
-//	
 	
-	public int getLengthAfterMove() {
-		if (fromCell.getClass().equals(toCell.getClass())){
-			int i = fromCell.size() - 1;
-			
-			if (toCell.isEmpty()) {
-				int pointer = 100;
-				while (i>=1) {
-					Card currentCard = fromCell.get(i);
-					Card nextCard = fromCell.get(i-1);
-					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
-						pointer = i - 1;
-						i--;
-					}
-					else if (i == fromCell.size() - 1 ){
-						pointer = fromCell.size() - 1;
-						break;
-					}
-					else {
-						break;
-					}
-				}
-				return pointer;
-			}
-			
-			//logic for when only bottom card can be moved
-			Card fromCard = fromCell.get(i);
-			Card thisCard = toCell.get(toCell.size() -1);
-			if (!(fromCard.sameColor(thisCard)) && fromCard.compareTo(thisCard) == -1 ) {
-				return i;
-			}
-			//logic for moving multiple cards
-			int pointer = 100;
-			//int pointer = 100;
-			i = fromCell.size() - 1;
-			while (i >= 1) {
-				Card currentCard = fromCell.get(i);
-				Card nextCard = fromCell.get(i - 1);
-				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())){
-					pointer = i - 1;
-					i--;
-				}
-				else {
-					break;
-				}
-			}
-			return pointer;
-		}
-		else {
-			return fromCell.size() -1;
-		}
-	}
+    public int getLengthAfterMove() {
+        int count = 1;
+        if(fromCell instanceof Tableau) {
+                if(toCell instanceof Tableau) {
+                        if(toCell.isEmpty()) {
+                                for(int j = fromCell.size()-1; j > 0;j--) {
+                                       Card currentCard = fromCell.get(j);
+                                       int currentCardRank = currentCard.getRank();
+                                       Card nextCard = fromCell.get(j-1);
+                                       int nextCardRank = nextCard.getRank();
+                                       if(nextCardRank - currentCardRank == 1 && !(nextCard.sameColor(currentCard))) {
+                                               count++;
+                                       }
+                                       else {
+                                               break;
+                                       }
+                                }
+                        }
+                        else {
+                                Card bottomToCell = toCell.get();
+                                int bottomToCellRank =bottomToCell.getRank();
+                                for(int j = fromCell.size()-1;j>0;j--) {
+                                       Card currentCard = fromCell.get(j);
+                                       int currentCardRank = currentCard.getRank();
+                                       if(bottomToCellRank - currentCardRank == 1 && !(currentCard.sameColor(bottomToCell))){
+                                               break;
+                                       }
+                                       else {
+                                               count++;
+                                       }
+                                }
+                        }
+                }
+        }
+        return fromCell.size() - count;
+ }
+
 	public void setWeight() {
 		if(fromCell instanceof Tableau) {
 			int spineLen = fromCell.size() - this.getLengthAfterMove();
@@ -216,9 +173,9 @@ public class Move {
 //					for (int x=0; x < 8; x++) {
 //						Tableau tab = game.getTableau().get(x);
 //						if(tab.size() > 1) {
-//							int tabRankTop = tab.get(tab.getTopOfMovableTableau()).getRank();
-//							Suit tabSuitTop = tab.get(tab.getTopOfMovableTableau()).getSuit();
-//							if (fromCell.get(gpos-1).getRank() == tabRankTop+1 &&
+//							int tabRankTop = tab.get(lengthAfterMove-1).getRank();
+//							Suit tabSuitTop = tab.get(lengthAfterMove-1).getSuit();
+//							if (fromCell.get(lengthAfterMove-1).getRank() == tabRankTop+1 &&
 //									!(fromCell.get(lengthAfterMove-1).getSuit().equals(tabSuitTop))) {
 //								weight += 5;
 //							}

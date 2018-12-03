@@ -65,16 +65,23 @@ public class FreeCellAI {
 		int highestWeight = -10000;
 		Move bestMove = null;
 		HashMap<Move,Integer> allMoves = this.generateMoves();
-		System.out.println(allMoves);
-		for(Move move : allMoves.keySet()) {
-			if(allMoves.get(move) >= highestWeight) {
-				bestMove = move;
-				highestWeight = allMoves.get(move);
+		//System.out.println(allMoves);
+		for (HashMap.Entry<Move, Integer> entry : allMoves.entrySet()) {
+			if (entry.getValue() >= highestWeight) {
+				bestMove = entry.getKey();
+				highestWeight = entry.getValue();
 			}
+		   
 		}
-		game.move(bestMove.getFrom(), bestMove.getTo());
-		System.out.println(bestMove);
-		System.out.println(bestMove.getLengthAfterMove());
+		try {
+			game.move(bestMove.getFrom(), bestMove.getTo());
+		}
+		catch (NullPointerException e) {
+			;
+		}
+
+//		System.out.println(bestMove);
+//		System.out.println(bestMove.getLengthAfterMove());
 		
 	}
 	
