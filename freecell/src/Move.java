@@ -175,13 +175,24 @@ public class Move {
 //						if(tab.size() >= 1) {
 //							int tabRankTop = tab.get(lengthAfterMove-2).getRank();
 //							Suit tabSuitTop = tab.get(lengthAfterMove-2).getSuit();
-//							if (fromCell.get(lengthAfterMove).getRank() == tabRankTop+1 &&
+//							if (fromCell.get(lengthAfterMove-1).getRank() == tabRankTop+1 &&
 //									!(fromCell.get(lengthAfterMove-1).getSuit().equals(tabSuitTop))) {
 //								weight += 5;
 //							}
 //						}
 //					}	
-//				}	
+//				}
+				
+				if (lengthAfterMove >=1) {
+					for (int x=0; x < 8; x ++) {
+						Tableau tab=  game.getTableau().get(x);
+						if (!tab.isEmpty()){
+							if (tab.canAddTo(fromCell.get(lengthAfterMove-1))){
+								weight +=5;
+							}
+						}
+					}
+				}
 			}
 			if (toCell instanceof FreeCell) {
 				weight = 30 - lengthAfterMove;  
