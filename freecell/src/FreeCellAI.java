@@ -17,7 +17,7 @@ public class FreeCellAI {
 		for(Tableau fromTableau: game.getTableau()) {
 			for(Tableau toTableau: game.getTableau()) {
 				if(toTableau.canMoveFrom(fromTableau)) {
-					Move move = new Move(fromTableau,toTableau);
+					Move move = new Move(fromTableau,toTableau,this.game);
 					allMoves.put(move, move.getWeight());
 				}
 			}
@@ -26,7 +26,7 @@ public class FreeCellAI {
 		for(Tableau fromTableau: game.getTableau()) {
 			for(FreeCell toFreeCell: game.getFreeCell()) {
 				if(toFreeCell.canMoveFrom(fromTableau)) {
-					Move move = new Move(fromTableau,toFreeCell);
+					Move move = new Move(fromTableau,toFreeCell,this.game);
 					allMoves.put(move, move.getWeight());					
 				}
 			}
@@ -35,7 +35,7 @@ public class FreeCellAI {
 		for(Tableau fromTableau: game.getTableau()) {
 			for(Foundations toHomeCell: game.getFoundation()) {
 				if(toHomeCell.canMoveFrom(fromTableau)){
-					Move move = new Move(fromTableau,toHomeCell);
+					Move move = new Move(fromTableau,toHomeCell, this.game);
 					allMoves.put(move, move.getWeight());	
 				}
 			}
@@ -44,7 +44,7 @@ public class FreeCellAI {
 		for(FreeCell fromFreeCell: game.getFreeCell()) {
 			for(Tableau toTableau: game.getTableau()) {
 				if(toTableau.canMoveFrom(fromFreeCell)){
-					Move move = new Move(fromFreeCell,toTableau);
+					Move move = new Move(fromFreeCell,toTableau,this.game);
 					allMoves.put(move, move.getWeight());
 				}
 			}
@@ -53,7 +53,7 @@ public class FreeCellAI {
 		for(FreeCell fromFreeCell: game.getFreeCell()) {
 			for(Foundations toHomeCell: game.getFoundation()) {
 				if(toHomeCell.canMoveFrom(fromFreeCell)){
-					Move move = new Move(fromFreeCell,toHomeCell);
+					Move move = new Move(fromFreeCell,toHomeCell, this.game);
 					allMoves.put(move, move.getWeight());
 				}
 			}
@@ -65,20 +65,22 @@ public class FreeCellAI {
 		int highestWeight = -10000;
 		Move bestMove = null;
 		HashMap<Move,Integer> allMoves = this.generateMoves();
+		System.out.println(allMoves);
 		for(Move move : allMoves.keySet()) {
 			if(allMoves.get(move) >= highestWeight) {
 				bestMove = move;
 				highestWeight = allMoves.get(move);
 			}
 		}
-		game.move(bestMove.getFrom(), bestMove.getTo());	
+		game.move(bestMove.getFrom(), bestMove.getTo());
+		System.out.println(bestMove);
+		System.out.println(bestMove.getLengthAfterMove());
+		
 	}
 	
     public static void main(String[] args){
     	Game game = new Game();
     	FreeCellAI ai = new FreeCellAI(game);
-    	ai.generateMoves();
-    	ai.executeMove();
-    	//System.out.println(ai.allMoves.size());
+    	System.out.println(ai.generateMoves());
     }
 }

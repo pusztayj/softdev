@@ -193,9 +193,9 @@ public class FreeCellView extends JFrame{
       //Hint Button Listener
         hint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	//ai.generateMoves();
             	ai.executeMove();
             	FreeCellView.this.repaint();
+            	
             	}
             });
         
