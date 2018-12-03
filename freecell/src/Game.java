@@ -16,7 +16,6 @@ public class Game {
 	private ArrayList<Tableau> tableauList;
 	private ArrayList<FreeCell> freecellList;
 	private ArrayList<Foundations> foundationsList;
-	private ArrayList<Move> movesList;
 	private static int moveCount = 0;
 
 	/**
@@ -67,14 +66,7 @@ public class Game {
 		return moveCount;
 	}
 	
-	/**
-	 * gets the number of legal moves made thus far
-	 * @return - the number of moves
-	 */
-	public ArrayList<Move> getMovesList() {
-		return movesList;
-	}
-	
+
 	/**
 	 * Returns a string representation of the current state in the game. It will
 	 * have all the cards listed in their respective piles.
@@ -105,11 +97,6 @@ public class Game {
 	public boolean move(CellInterface fromCell, CellInterface toCell) {
 		if (toCell.moveFrom(fromCell)) {
 			moveCount ++;
-			this.movesList = new ArrayList<Move>();
-			CellInterface temp = fromCell;
-			fromCell = toCell;
-			toCell = temp;
-			movesList.add(new Move(fromCell, toCell));
 			//System.out.println(moveCount);
 			return true;
 		}
