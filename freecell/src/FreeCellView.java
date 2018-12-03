@@ -17,11 +17,10 @@ import java.util.Random;
 public class FreeCellView extends JFrame{
 
     private Game game;
-
     private AbstractPanel firstClick;
-    
     private AppViewInformer vi;
     private FreeCellAI ai;
+    private JLabel moveCounter;
     
     
     private class AppViewInformer implements ViewInformer{
@@ -44,6 +43,7 @@ public class FreeCellView extends JFrame{
     	    	if(game.move(firstClick.getCell(), secondClick.getCell())) {
     	    		firstClick.repaint();
     	    		secondClick.repaint();
+    	    		moveCounter.setText("Move Count: " + game.getMoves());
     	    		firstClick = null;
     	    	
         	    	if(game.gameHasWinner()) {
@@ -96,6 +96,11 @@ public class FreeCellView extends JFrame{
         layout.setConstraints(freeCellLabel, constraints);
         c.add(freeCellLabel);
         
+        moveCounter = new JLabel("Move Count: " + game.getMoves());
+        constraints.gridx = 2;
+        constraints.gridy = 0;
+        layout.setConstraints(moveCounter, constraints);
+        c.add(moveCounter);
         
         JLabel homeCellLabel = new JLabel("Home Cells");
         constraints.gridx = 4;
@@ -155,10 +160,11 @@ public class FreeCellView extends JFrame{
         JButton newGameButton = new JButton("New Game");
         JButton hint = new JButton("Hint");
         JButton newBackground = new JButton("New Background");
+        JButton undo = new JButton("Undo");
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridx = 3;
         constraints.gridy = 3;
         layout.setConstraints(newGameButton, constraints);
@@ -166,7 +172,7 @@ public class FreeCellView extends JFrame{
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridx = 5;
         constraints.gridy = 3;
         layout.setConstraints(hint, constraints);
@@ -174,11 +180,19 @@ public class FreeCellView extends JFrame{
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2;
-        constraints.gridx = 1;
+        constraints.gridwidth = 1;
+        constraints.gridx = 0;
         constraints.gridy = 3;
         layout.setConstraints(newBackground, constraints);
         c.add(newBackground);
+        
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 1;
+        constraints.gridx = 6;
+        constraints.gridy = 3;
+        layout.setConstraints(undo, constraints);
+        c.add(undo);
         
         
         // New Game Button Listener
@@ -187,15 +201,17 @@ public class FreeCellView extends JFrame{
 	        	game.newGame();
 	        	firstClick = null;
 	        	FreeCellView.this.repaint();
+	        	moveCounter.setText("Move Count: " + game.getMoves());
 	        	}
 	        });
         
-      //Hint Button Listener
+        //Hint Button Listener
         hint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	//ai.generateMoves();
             	ai.executeMove();
             	FreeCellView.this.repaint();
-            	
+	        	moveCounter.setText("Move Count: " + game.getMoves());
             	}
             });
         
@@ -292,6 +308,18 @@ public class FreeCellView extends JFrame{
 				}
 			        	}
 			        });
+        
+        // Undo Button Listener
+        undo.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	Move moveObject = game.getMovesList().get(game.getMovesList().size() - 1);
+	        	CellInterface undoFromCell = moveObject.getTo();
+	        	CellInterface undoToCell = moveObject.getFrom();
+	        	game.move(undoFromCell, undoToCell);
+//	        	FreeCellView.this.repaint();
+//	        	moveCounter.setText("Move Count: " + game.getMoves());
+	        	}
+	        });
         
     }
     /**
