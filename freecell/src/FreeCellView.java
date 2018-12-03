@@ -160,11 +160,10 @@ public class FreeCellView extends JFrame{
         JButton newGameButton = new JButton("New Game");
         JButton hint = new JButton("Hint");
         JButton newBackground = new JButton("New Background");
-        JButton undo = new JButton("Undo");
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.gridx = 3;
         constraints.gridy = 3;
         layout.setConstraints(newGameButton, constraints);
@@ -172,7 +171,7 @@ public class FreeCellView extends JFrame{
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.gridx = 5;
         constraints.gridy = 3;
         layout.setConstraints(hint, constraints);
@@ -180,19 +179,12 @@ public class FreeCellView extends JFrame{
         
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 1;
-        constraints.gridx = 0;
+        constraints.gridwidth = 2;
+        constraints.gridx = 1;
         constraints.gridy = 3;
         layout.setConstraints(newBackground, constraints);
         c.add(newBackground);
         
-        constraints.weightx = 0;
-        constraints.weighty = 0;
-        constraints.gridwidth = 1;
-        constraints.gridx = 6;
-        constraints.gridy = 3;
-        layout.setConstraints(undo, constraints);
-        c.add(undo);
         
         
         // New Game Button Listener
@@ -309,17 +301,7 @@ public class FreeCellView extends JFrame{
 			        	}
 			        });
         
-        // Undo Button Listener
-        undo.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	        	Move moveObject = game.getMovesList().get(game.getMovesList().size() - 1);
-	        	CellInterface undoFromCell = moveObject.getTo();
-	        	CellInterface undoToCell = moveObject.getFrom();
-	        	game.move(undoFromCell, undoToCell);
-//	        	FreeCellView.this.repaint();
-//	        	moveCounter.setText("Move Count: " + game.getMoves());
-	        	}
-	        });
+    
         
     }
     /**
