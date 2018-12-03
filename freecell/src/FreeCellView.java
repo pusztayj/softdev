@@ -204,6 +204,12 @@ public class FreeCellView extends JFrame{
             	ai.executeMove();
             	FreeCellView.this.repaint();
 	        	moveCounter.setText("Move Count: " + game.getMoves());
+	        	if(game.gameHasWinner()){
+	        		JOptionPane.showMessageDialog(null,"Congratulations! You have won!");
+	        	}
+	        	else if(game.gameHasLoser()) {
+	        		JOptionPane.showMessageDialog(null,"No possible moves. You have lost!");
+	        	}
             	}
             });
         

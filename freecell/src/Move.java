@@ -168,15 +168,15 @@ public class Move {
 					}	
 				}	
 				
-//				//Checks a two move combination to make sure a tableau can be moved afterwards 
+				//Checks a two move combination to make sure a tableau can be moved afterwards 
 //				if(lengthAfterMove >=1) {
 //					for (int x=0; x < 8; x++) {
 //						Tableau tab = game.getTableau().get(x);
-//						if(tab.size() > 1) {
-//							int tabRankTop = tab.get(lengthAfterMove-1).getRank();
-//							Suit tabSuitTop = tab.get(lengthAfterMove-1).getSuit();
-//							if (fromCell.get(lengthAfterMove-1).getRank() == tabRankTop+1 &&
-//									!(fromCell.get(lengthAfterMove-1).getSuit().equals(tabSuitTop))) {
+//						if(tab.size() > 2) {
+//							int tabRankTop = tab.get(lengthAfterMove-).getRank();
+//							Suit tabSuitTop = tab.get(lengthAfterMove-2).getSuit();
+//							if (fromCell.get(lengthAfterMove-2).getRank() == tabRankTop+1 &&
+//									!(fromCell.get(lengthAfterMove-2).getSuit().equals(tabSuitTop))) {
 //								weight += 5;
 //							}
 //						}
