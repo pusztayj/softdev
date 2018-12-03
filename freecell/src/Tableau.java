@@ -79,7 +79,7 @@ public class Tableau extends AbstractCell{
 			while (i >= 1) {
 				Card currentCard = fromCell.get(i);
 				Card nextCard = fromCell.get(i - 1);
-				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1) {
+				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())) {
 					pointer = i - 1;
 					i --;
 					
@@ -162,7 +162,7 @@ public class Tableau extends AbstractCell{
 				while (i >= 1) {
 					Card currentCard = fromCell.get(i);
 					Card nextCard = fromCell.get(i - 1);
-					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
+					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())){
 						pointer = i - 1;
 						i--;
 					}
