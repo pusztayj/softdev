@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Tableau extends AbstractCell{
 	
 	private static int maxSize = 19;
-	private int pointer;
+	//private int pointer;
 	
 	
     /**
@@ -78,13 +78,14 @@ public class Tableau extends AbstractCell{
 			if (!(fromCard.sameColor(thisCard)) && fromCard.compareTo(thisCard) == -1 ) {
 				return true;
 			}
-			pointer = 100;
+			int pointer = 100;
 			//int pointer = 100;
 			while (i >= 1) {
 				Card currentCard = fromCell.get(i);
 				Card nextCard = fromCell.get(i - 1);
-				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())) {
-					this.pointer = i - 1;
+				//if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())) {
+				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1) {
+					pointer = i - 1;
 					i --;
 					
 				}
@@ -136,7 +137,9 @@ public class Tableau extends AbstractCell{
 						}
 					}
 					ArrayList<Card> addList = new ArrayList<Card>();
+					//System.out.println(fromCell);
 					for (; pointer < fromCell.size(); pointer++) {
+						//System.out.println(fromCell.get(pointer));
 						addList.add(fromCell.get(pointer));
 					}
 					for (Card card : addList) {
@@ -158,13 +161,15 @@ public class Tableau extends AbstractCell{
 				}
 				
 				//logic for moving multiple cards
-				pointer = 100;
+				int pointer = 100;
 				//int pointer = 100;
 				i = fromCell.size() - 1;
 				while (i >= 1) {
 					Card currentCard = fromCell.get(i);
 					Card nextCard = fromCell.get(i - 1);
-					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())){
+					//if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank()))
+					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
+						
 						pointer = i - 1;
 						i--;
 					}
@@ -175,6 +180,7 @@ public class Tableau extends AbstractCell{
 				ArrayList<Card> addList = new ArrayList<Card>();
 				for (; pointer < fromCell.size(); pointer++) {
 					addList.add(fromCell.get(pointer));
+					//System.out.println(fromCell.get(pointer));
 				}
 				for (Card card : addList) {
 					this.add(card);
@@ -207,9 +213,5 @@ public class Tableau extends AbstractCell{
 	
 	public Card remove(int index) {
 		return this.cards.remove(index);
-	}
-	
-	public int getPointer() {
-		return pointer;
 	}
 }

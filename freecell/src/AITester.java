@@ -5,7 +5,7 @@ public class AITester {
 		int wins = 0;
 		int stuck = 0;
 		int loss = 0;
-		for(int i = 0; i <1000; i++) {
+		for(int i = 0; i <10000; i++) {
 			Game game = new Game();
 			FreeCellAI ai = new FreeCellAI(game);
 			for(int j = 0; j < 150; j++) {
