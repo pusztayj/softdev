@@ -19,7 +19,7 @@ public class GUIApp{
         final Game game = new Game();
         final JFrame view = new FreeCellView(game);
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setSize(800, 600);
+        view.setSize(1050, 600);
         view.setVisible(true);
     }
 }
