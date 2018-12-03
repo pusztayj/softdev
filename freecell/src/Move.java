@@ -169,22 +169,20 @@ public class Move {
 				}	
 				
 				//Checks a two move combination to make sure a tableau can be moved afterwards 
-//				if(lengthAfterMove >=1) {
-//					for (int x=0; x < 8; x++) {
-//						Tableau tab = game.getTableau().get(x);
-//						if(tab.size() > 2) {
-//							int tabRankTop = tab.get(lengthAfterMove-).getRank();
-//							Suit tabSuitTop = tab.get(lengthAfterMove-2).getSuit();
-//							if (fromCell.get(lengthAfterMove-2).getRank() == tabRankTop+1 &&
-//									!(fromCell.get(lengthAfterMove-2).getSuit().equals(tabSuitTop))) {
-//								weight += 5;
-//							}
-//						}
-//					}	
-//				}	
+				if(lengthAfterMove >=1) {
+					for (int x=0; x < 8; x++) {
+						Tableau tab = game.getTableau().get(x);
+						if(tab.size() >= 1) {
+							int tabRankTop = tab.get(lengthAfterMove-2).getRank();
+							Suit tabSuitTop = tab.get(lengthAfterMove-2).getSuit();
+							if (fromCell.get(lengthAfterMove).getRank() == tabRankTop+1 &&
+									!(fromCell.get(lengthAfterMove-1).getSuit().equals(tabSuitTop))) {
+								weight += 5;
+							}
+						}
+					}	
+				}	
 			}
-			
-			
 			if (toCell instanceof FreeCell) {
 				weight = 30 - lengthAfterMove;  
 				if (lengthAfterMove >= 1) {
@@ -246,12 +244,12 @@ public class Move {
 		}
 		if(fromCell instanceof FreeCell) {
 			if (toCell instanceof Foundations) {
-				weight = 10000;
+				weight = 100000;
 			}
-			if (fromCell instanceof Tableau) {
-				weight = 9999 - toCell.size();
+			else if (fromCell instanceof Tableau) {
+				weight = 9000 - toCell.size();
 			}
-			if (fromCell instanceof FreeCell) {
+			else if (fromCell instanceof FreeCell) {
 				weight = -100;
 			}
 		}

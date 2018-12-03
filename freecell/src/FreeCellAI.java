@@ -71,7 +71,7 @@ public class FreeCellAI {
 				bestMove = entry.getKey();
 				highestWeight = entry.getValue();
 			}
-		   
+		//System.out.println(highestWeight);
 		}
 		try {
 			game.move(bestMove.getFrom(), bestMove.getTo());
