@@ -52,7 +52,6 @@ public class Tableau extends AbstractCell{
 	/**
      * Returns true or false, depending on if we can remove a card
      * from the pile or not 
-     * @param card you want to remove from the pile
      * @return true if the pile is not full, false if it is full
      */
 	@Override
@@ -65,7 +64,12 @@ public class Tableau extends AbstractCell{
 			return false;
 		}
 	}
-	
+	/**
+     * Returns true or false, depending on if we can remove a card
+     * from the pile or not 
+     * @param fromCell - the cell representing the pile you want to move from
+     * @return boolean true if can move from the pile, false if not
+     */
 	public boolean canMoveFrom(CellInterface fromCell) {		
 		//check if fromCell is a Tableau
 		if (fromCell.getClass().equals(this.getClass()) && fromCell.canRemoveFrom()) {
@@ -79,11 +83,9 @@ public class Tableau extends AbstractCell{
 				return true;
 			}
 			int pointer = 100;
-			//int pointer = 100;
 			while (i >= 1) {
 				Card currentCard = fromCell.get(i);
 				Card nextCard = fromCell.get(i - 1);
-				//if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank())) {
 				if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1) {
 					pointer = i - 1;
 					i --;
@@ -112,7 +114,13 @@ public class Tableau extends AbstractCell{
 		}
 	
 	}
-	
+	/**
+     * Returns true or false, depending on if we can remove a card
+     * from the pile or not 
+     * @param fromCell - cell representing the pile you want to move from
+     * @return boolean strue if can move from the pile, false if not
+     * if can move from, will also execute the move
+     */
 	public boolean moveFrom(CellInterface fromCell) {
 		if (this.canMoveFrom(fromCell)) {
 			if (fromCell.getClass().equals(this.getClass())){
@@ -137,9 +145,7 @@ public class Tableau extends AbstractCell{
 						}
 					}
 					ArrayList<Card> addList = new ArrayList<Card>();
-					//System.out.println(fromCell);
 					for (; pointer < fromCell.size(); pointer++) {
-						//System.out.println(fromCell.get(pointer));
 						addList.add(fromCell.get(pointer));
 					}
 					for (Card card : addList) {
@@ -167,7 +173,6 @@ public class Tableau extends AbstractCell{
 				while (i >= 1) {
 					Card currentCard = fromCell.get(i);
 					Card nextCard = fromCell.get(i - 1);
-					//if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1 && !nextCard.sameColor(thisCard) && !(nextCard.getRank() == thisCard.getRank()))
 					if (!nextCard.sameColor(currentCard) && nextCard.compareTo(currentCard) == 1){
 						
 						pointer = i - 1;
@@ -180,7 +185,6 @@ public class Tableau extends AbstractCell{
 				ArrayList<Card> addList = new ArrayList<Card>();
 				for (; pointer < fromCell.size(); pointer++) {
 					addList.add(fromCell.get(pointer));
-					//System.out.println(fromCell.get(pointer));
 				}
 				for (Card card : addList) {
 					this.add(card);

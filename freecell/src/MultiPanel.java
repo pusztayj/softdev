@@ -16,6 +16,7 @@ public class MultiPanel extends AbstractPanel {
     /**
      * Constructor for an empty multipanel, displays a wire frame. 
      * @param cell - the cell 
+     * @param v - the ViewInformer object
 	 */
 	public MultiPanel(CellInterface cell, ViewInformer v) {
 		super(cell, v);
@@ -23,6 +24,7 @@ public class MultiPanel extends AbstractPanel {
     /**
      * Paints the multiple cards face image if cards are present,
      * otherwise, paints the back side image.
+     * Also paints yellow/orange borders around the tableau piles
 	 * @param g - the graphics
 	 */
 	 public void paintComponent(Graphics g){

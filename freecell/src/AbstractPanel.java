@@ -17,11 +17,14 @@ public class AbstractPanel extends JPanel implements MouseListener {
         view = v;
     }
     
-    
+    //voided methods for mouse events not needed but that were 
+    //must be implemented from the MouseListener
     public void mouseReleased(MouseEvent e) {}
     public void mouseClicked(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
+    
+    
     public void mousePressed(MouseEvent e) {
     	view.panelPressed(this);
 

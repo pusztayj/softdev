@@ -20,7 +20,10 @@ public class Deck{
 	addSuit(Suit.diamond);
 	addSuit(Suit.club);
     }
-
+    /**
+     * Add the 13 cards for a specified suit to the deck
+     * @param suit - the suit for the cards you wish to add to the deck
+     */
     private void addSuit(Suit suit){
 	for (int i = 1; i <= 13; i++)
 	    deck.add(new Card(suit, i));

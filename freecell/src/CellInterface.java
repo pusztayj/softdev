@@ -10,8 +10,10 @@ import java.util.*;
  */
 
 public interface CellInterface extends Iterable<Card>{
+	
 	/**
 	* Method header to add a card to a pile in the game
+	* @param c - the card to be added
 	*/
 	public void add(Card c);
 
@@ -46,10 +48,15 @@ public interface CellInterface extends Iterable<Card>{
      */
     public boolean canMoveFrom(CellInterface fromCell);
     
-    
+	/**
+	* Method header to check if a pile contains no cards
+	*/
     public boolean isEmpty();
     
-    
+	/**
+	* Method header to move card(s) from one pile to another
+	* @param fromCell - cell from which you want to move card(s)
+	*/
     public boolean moveFrom(CellInterface fromCell);
     
     
@@ -60,6 +67,11 @@ public interface CellInterface extends Iterable<Card>{
      */
     public Card remove();
     
+    /**
+     * Calls the remove method on the Cell's cards list
+     * @param index - the index of the card you wish to remove
+     * @return the card at the specified index
+     */
     public Card remove(int index);
     
     /**

@@ -123,7 +123,10 @@ public class Game {
 		
 	}
 	
-	
+	/**
+	 * Checks to see if the game has been won
+	 * @return boolean - true if has been won, false if has not
+	 */
 	public boolean gameHasWinner() {
 		for (Foundations foundPile : foundationsList) {
 			if (!(foundPile.size() ==13)) {
@@ -133,7 +136,10 @@ public class Game {
 		}
 		return true;
 	}
-	
+	/**
+	 * Checks to see if the game has been lost
+	 * @return boolean - true if has been lost, false if has not
+	 */
 	public boolean gameHasLoser() {
 		for (FreeCell fcpile : freecellList) {
 			if (!(fcpile.size() == 1)) {

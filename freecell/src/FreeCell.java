@@ -36,19 +36,22 @@ public class FreeCell extends AbstractCell{
 	/**
      * Returns true or false, depending on if we can remove a card
      * from the pile or not 
-     * @param card you want to remove from the pile
-     * @return true if the pile is not full, false if it is full
+     * @return boolean true if the pile is not full, false if it is full
      */
 	public boolean canRemoveFrom() {
 		if (cards.size() > 0){
 			return true;
 		}
 		else {
-			//System.out.println("This free cell pile is empty");
 			return false;
 		}
 	}
-	
+	/**
+     * Returns true or false, depending on if you can move a card
+     * between two piles
+     * @param fromCell - the cell representing the pile you want to move from 
+     * @return boolean true if the move can be made, false if not
+     */
 	public boolean canMoveFrom(CellInterface fromCell) {
 		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
 			return true;

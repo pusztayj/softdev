@@ -19,7 +19,12 @@ public class Foundations extends AbstractCell{
 	public Foundations(){
 		super();
 	}
-	
+	/**
+     * Returns true or false, depending on if you can move a card
+     * between two piles
+     * @param fromCell - the cell representing the pile you want to move from 
+     * @return boolean true if the move can be made, false if not
+     */
 	public boolean canMoveFrom(CellInterface fromCell) {
 		if (fromCell.canRemoveFrom() && this.canAddTo(fromCell.get())) {
 			return true;
@@ -32,7 +37,7 @@ public class Foundations extends AbstractCell{
 	/**
      * Checks foundations rules that card to add to pile is of
      * same color and one rank one greater than the top card in the pile
-     * @param card you want to add to the foundations
+     * @param card - card you want to add to the foundations
      * @return boolean true if can add that card, otherwise false
      */
 	public boolean canAddTo(Card card) {
@@ -43,7 +48,6 @@ public class Foundations extends AbstractCell{
 					return true;
 				}
 				else {
-					//System.out.println("First card must be Ace of" + type);
 					return false;
 				}
 			}
@@ -54,7 +58,6 @@ public class Foundations extends AbstractCell{
 						return true;
 					}
 					else { 
-						//System.out.println("Next card must be one rank higher than top of pile" );
 						return false;
 					}
 				}

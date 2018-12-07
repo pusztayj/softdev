@@ -16,6 +16,8 @@ public class CellPanel extends AbstractPanel {
 
     /**
      * Constructor for an empty panel, displays a wire frame. 
+     * * @param cell - the cell 
+     * @param v - the ViewInformer object
      */
     public CellPanel(CellInterface cell, ViewInformer v){
     	super(cell, v);
@@ -23,7 +25,8 @@ public class CellPanel extends AbstractPanel {
 
     /**
      * Paints the card's face image if a card is present, 
-     * otherwise, paints the back side image.
+     * otherwise, paints the back side image.    
+     * Also paints yellow/orange borders around the piles
      * @param g - the graphics
      */
     
