@@ -13,9 +13,9 @@ import java.util.*;
 public class Game {
 	
 	private Deck deck;
-	private ArrayList<Tableau> tableauList;
-	private ArrayList<FreeCell> freecellList;
-	private ArrayList<Foundations> foundationsList;
+	private ArrayList<CellInterface> tableauList;
+	private ArrayList<CellInterface> freecellList;
+	private ArrayList<CellInterface> foundationsList;
 	private static int moveCount = 0;
 
 	/**
@@ -23,15 +23,15 @@ public class Game {
      * cards randomly to the tableau piles.
      */
 	public Game(){
-		this.freecellList = new ArrayList<FreeCell>(); 
+		this.freecellList = new ArrayList<CellInterface>(); 
 		for(int i = 0; i<4; i++){
 			this.freecellList.add(new FreeCell());
 		}
-		this.foundationsList = new ArrayList<Foundations>();
+		this.foundationsList = new ArrayList<CellInterface>();
 		for(int i = 0; i < 4; i++) {
 			this.foundationsList.add(new Foundations());
 		}
-		this.tableauList = new ArrayList<Tableau>();
+		this.tableauList = new ArrayList<CellInterface>();
 		for(int i = 0; i<8; i++) {
 			this.tableauList.add(new Tableau());
 		}
@@ -45,7 +45,7 @@ public class Game {
 		this.deck = new Deck();
 		this.deck.shuffle();
 		for(int i = 0; i<6; i++) {
-			for(Tableau tab : tableauList) {
+			for(CellInterface tab : tableauList) {
 				Card tempCard = this.deck.deal();
 				tempCard.turn();
 				tab.add(tempCard);
@@ -109,13 +109,13 @@ public class Game {
 	 * into the tableau piles. 
 	 */
 	public void newGame() {
-		for(FreeCell i: this.freecellList){
+		for(CellInterface i: this.freecellList){
 			i.clear();
 		}
-		for (Foundations i: this.foundationsList) {
+		for (CellInterface i: this.foundationsList) {
 			i.clear();
 		}
-		for(Tableau i: this.tableauList) {
+		for(CellInterface i: this.tableauList) {
 			i.clear();
 		}
 		this.setup();
@@ -128,7 +128,7 @@ public class Game {
 	 * @return boolean - true if has been won, false if has not
 	 */
 	public boolean gameHasWinner() {
-		for (Foundations foundPile : foundationsList) {
+		for (CellInterface foundPile : foundationsList) {
 			if (!(foundPile.size() ==13)) {
 				return false;
 			}
@@ -141,28 +141,28 @@ public class Game {
 	 * @return boolean - true if has been lost, false if has not
 	 */
 	public boolean gameHasLoser() {
-		for (FreeCell fcpile : freecellList) {
+		for (CellInterface fcpile : freecellList) {
 			if (!(fcpile.size() == 1)) {
 				return false;
 			}
-			for (Tableau tabpile : tableauList) {
+			for (CellInterface tabpile : tableauList) {
 				if (tabpile.canMoveFrom(fcpile)) {
 					return false;
 				}
 			}
-			for (Foundations foundPile : foundationsList) {
+			for (CellInterface foundPile : foundationsList) {
 				if (foundPile.canMoveFrom(fcpile)) {
 					return false;
 				}
 			}
 		}
-		for (Tableau tabpile : tableauList) {
-			for (Foundations foundPile : foundationsList) {
+		for (CellInterface tabpile : tableauList) {
+			for (CellInterface foundPile : foundationsList) {
 				if (foundPile.canMoveFrom(tabpile)) {
 					return false;
 				}
 			}
-			for (Tableau tabpile2 : tableauList) {
+			for (CellInterface tabpile2 : tableauList) {
 				if (tabpile2.canMoveFrom(tabpile)) {
 					return false;
 				}
@@ -176,23 +176,27 @@ public class Game {
 	 * Gets the list that holds the information in the tableuax piles.
 	 * @return the tableau list
 	 */
-	public ArrayList<Tableau> getTableau() {
-		return this.tableauList;
+	public CellInterface getTableauCell(int i) {
+		
+	//public ArrayList<CellInterface> getTableauCell(int i) {
+		return this.tableauList.get(i);
 	}
 	/**
 	 * Gets the list that holds the freecells and the information within the list.
 	 * @return the freecell list
 	 */
-	public ArrayList<FreeCell> getFreeCell() {
-		return this.freecellList;
+	public CellInterface getFreeCell(int i) {
+	//public ArrayList<CellInterface> getFreeCell() {
+		return this.freecellList.get(i);
 	}
 	/**
 	 * Gets the list that holds all the foundation piles and the information that lies 
 	 * within those objects. 
 	 * @return the foundations list
 	 */
-	public ArrayList<Foundations> getFoundation() {
-		return this.foundationsList;
+	public CellInterface getFoundationCell(int i) {
+	//public ArrayList<CellInterface> getFoundation() {
+		return this.foundationsList.get(i);
 	}
 	
 }

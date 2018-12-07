@@ -1,6 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+/**
+ * The abstract panel class
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ * @version 1.0
+ */
+
 public class AbstractPanel extends JPanel implements MouseListener {
 	
     protected CellInterface panelCell;
@@ -24,12 +34,16 @@ public class AbstractPanel extends JPanel implements MouseListener {
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
     
-    
+    /**
+     * Executes the controller when the mouse presses a panel.
+     */
     public void mousePressed(MouseEvent e) {
     	view.panelPressed(this);
 
     }
-    
+    /**
+     * Paints the cells.
+     */
     public void paintComponent(Graphics g) {
     	super.paintComponent(g);
     }

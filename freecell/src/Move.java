@@ -1,5 +1,13 @@
 import java.util.ArrayList;
-
+/**
+ * The Move class that generates a move between two cells and assigns
+ * a weight based on how good the move is in the strategy of freecell.
+ * @author pusztayj
+ * @author dut
+ * @author babikr
+ * @author brandl
+ * @version 1.0
+ */
 public class Move {
 
 	private CellInterface fromCell;
@@ -7,14 +15,22 @@ public class Move {
 	private int weight;
 	private Game game;
 	
-	
+	/**
+	 * The Move constructor that is passed the to toCell and fromCell along with 
+	 * the game and constructs a weight for how good that move is.
+	 * @param from CellInterface, the source cell
+	 * @param to CellInterface the destination cell
+	 * @param g the game that is being played.
+	 */
 	public Move(CellInterface from, CellInterface to, Game g) {
 		fromCell = from;
 		toCell = to;
 		game = g;
 		this.setWeight();
 	}
-	
+	/**
+	 * Returns a string that represents the move with all the cards within the cells.
+	 */
 	public String toString() {
 		ArrayList<CellInterface> tempList = new ArrayList<CellInterface>();
 		tempList.add(fromCell);
@@ -22,7 +38,11 @@ public class Move {
 		return tempList.toString();
 		
 	}
-	
+	/**
+	 * Gets the lenght of a cell after cards would have been moved out of it. This is 
+	 * very important for calculating the weight of the move. 
+	 * @return int representing the length of a cell after a move
+	 */
     public int getLengthAfterMove() {
         int count = 1;
         if(fromCell instanceof Tableau) {
@@ -59,7 +79,9 @@ public class Move {
         }
         return fromCell.size() - count;
  }
-
+    /**
+     * Goes through the free cell strategy and assigns weights to a move based on the strategy.
+     */
 	public void setWeight() {
 		if(fromCell instanceof Tableau) {
 			int spineLen = fromCell.size() - this.getLengthAfterMove();
@@ -114,12 +136,13 @@ public class Move {
 						weight = -1000;
 					}
 				}
-				
+				//Checks to see if an ace is behind card
 				if(lengthAfterMove >= 1) {
 					if(fromCell.get(lengthAfterMove-1).getRank() == 1) {
 						weight += 50;
 					}
 				}
+				//Checks to see if ace is two cards behind
 				if(lengthAfterMove >= 2) {
 					if(fromCell.get(lengthAfterMove-2).getRank() == 1) {
 						weight += 25;
@@ -129,7 +152,7 @@ public class Move {
 				//Looks for a two move combination to move a card to a foundation pile
 				if(lengthAfterMove >=1) {
 					for (int x=0; x < 4; x++) {
-						CellInterface hc1 = game.getFoundation().get(x);
+						CellInterface hc1 = game.getFoundationCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -143,7 +166,7 @@ public class Move {
 				//Checks a three move combination would move a card to a foundation pile
 				if(lengthAfterMove >=2) {
 					for (int x=0; x < 4; x++) {
-						CellInterface hc1 = game.getFoundation().get(x);
+						CellInterface hc1 = game.getFoundationCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -157,7 +180,7 @@ public class Move {
 				//Checks if a two move combination would free up a freecell
 				if(lengthAfterMove >=1) {
 					for (int x=0; x < 4; x++) {
-						CellInterface hc1 = game.getFreeCell().get(x);
+						CellInterface hc1 = game.getFreeCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -167,25 +190,10 @@ public class Move {
 						}
 					}	
 				}	
-				
-				//Checks a two move combination to make sure a tableau can be moved afterwards 
-//				if(lengthAfterMove >=1) {
-//					for (int x=0; x < 8; x++) {
-//						Tableau tab = game.getTableau().get(x);
-//						if(tab.size() >= 1) {
-//							int tabRankTop = tab.get(lengthAfterMove-2).getRank();
-//							Suit tabSuitTop = tab.get(lengthAfterMove-2).getSuit();
-//							if (fromCell.get(lengthAfterMove-1).getRank() == tabRankTop+1 &&
-//									!(fromCell.get(lengthAfterMove-1).getSuit().equals(tabSuitTop))) {
-//								weight += 5;
-//							}
-//						}
-//					}	
-//				}
-				
+				//Checks to see a one move combination would free up tableau				
 				if (lengthAfterMove >=1) {
 					for (int x=0; x < 8; x ++) {
-						Tableau tab=  game.getTableau().get(x);
+						CellInterface tab=  game.getTableauCell(x);
 						if (!tab.isEmpty()){
 							if (tab.canAddTo(fromCell.get(lengthAfterMove-1))){
 								weight +=5;
@@ -194,6 +202,7 @@ public class Move {
 					}
 				}
 			}
+			//Sets up moves into freecells
 			if (toCell instanceof FreeCell) {
 				weight = 30 - lengthAfterMove;  
 				if (lengthAfterMove >= 1) {
@@ -209,15 +218,16 @@ public class Move {
 				if (rankOfTopPileMoved > 10 || rankOfTopPileMoved < 5) {
 					weight -= (rankOfTopPileMoved / 4);
 				}
-				
+				//Checks if moving top card to freecell opens up an ace
 				if(lengthAfterMove >= 1) {
 					if(fromCell.get(lengthAfterMove-1).getRank() == 1) {
 						weight += 8;
 					}
 				}
+				//Checks one move combination to see that will a card to get to home cell
 				if(lengthAfterMove >=1) {
 					for (int x=0; x < 4; x++) {
-						CellInterface hc1 = game.getFoundation().get(x);
+						CellInterface hc1 = game.getFoundationCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -227,9 +237,10 @@ public class Move {
 						}
 					}	
 				}
+				//Checks one move combination to see that will a move a tableau pile
 				if(lengthAfterMove >=1) {
 					for (int x=0; x < 8; x++) {
-						CellInterface hc1 = game.getTableau().get(x);
+						CellInterface hc1 = game.getTableauCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -239,9 +250,10 @@ public class Move {
 						}
 					}	
 				}
+				//Checks two move combination to see that will a card to get to home cell
 				if(lengthAfterMove >=2) {
 					for (int x=0; x < 4; x++) {
-						CellInterface hc1 = game.getFoundation().get(x);
+						CellInterface hc1 = game.getFoundationCell(x);
 						if(hc1.size() > 1) {
 							int hr1 = hc1.get(hc1.size()-1).getRank();
 							Suit hs1 = hc1.get(hc1.size()-1).getSuit();
@@ -253,6 +265,7 @@ public class Move {
 				}
 			}
 		}
+		//Assigns weight to moving cards out of freecells
 		if(fromCell instanceof FreeCell) {
 			if (toCell instanceof Foundations) {
 				weight = 100000;
@@ -272,10 +285,17 @@ public class Move {
 	public int getWeight() {
 		return weight;
 	}
-	
+	/**
+	 * Returns the source cell. 
+	 * @return CellInterface
+	 */
 	public CellInterface getFrom() {
 		return fromCell;
 	}
+	/**
+	 * Returns the destination cell.
+	 * @return CellInterface
+	 */
 	public CellInterface getTo() {
 		return toCell;
 	}

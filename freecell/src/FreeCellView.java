@@ -22,10 +22,20 @@ public class FreeCellView extends JFrame{
     private FreeCellAI ai;
     private JLabel moveCounter;
     
-    
+    /**
+     * Executes the Controller and listens for mouse clicks. Updates the model
+     * after user attempts to execute a move.
+     * @author JPusztay
+     * @author dut
+     * @author babikr
+     * @author brandl
+     */
     private class AppViewInformer implements ViewInformer{
 
-    	  	
+    	/**
+    	 * Passes a panel and then assigns clicks based on the user's clicks. Executes a game
+    	 * move while also checking for loser and winner.
+    	 */
     	public void panelPressed(AbstractPanel panel) {
     		if(firstClick == null) {
 
@@ -125,14 +135,14 @@ public class FreeCellView extends JFrame{
         
         // Create Top Cells
         for(int i = 0; i < 4; i++) {
-        	freecellPanels.add(new CellPanel(game.getFreeCell().get(i), vi));
+        	freecellPanels.add(new CellPanel(game.getFreeCell(i), vi));
         	freecellPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(freecellPanels.get(i), constraints);
         	constraints.gridx += 1;
         	c.add(freecellPanels.get(i));
         }
         for(int i = 0; i < 4; i++) {
-        	foundationPanels.add(new CellPanel(game.getFoundation().get(i), vi));
+        	foundationPanels.add(new CellPanel(game.getFoundationCell(i), vi));
         	foundationPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(foundationPanels.get(i), constraints);
         	constraints.gridx += 1;
@@ -149,7 +159,7 @@ public class FreeCellView extends JFrame{
         
         // Create bottom cells 
         for(int i = 0; i < 8; i++) {
-        	tableauPanels.add(new MultiPanel(game.getTableau().get(i), vi));
+        	tableauPanels.add(new MultiPanel(game.getTableauCell(i), vi));
         	tableauPanels.get(i).setBackground(new Color(0, 150, 0));
         	layout.setConstraints(tableauPanels.get(i), constraints);
         	constraints.gridx += 1;

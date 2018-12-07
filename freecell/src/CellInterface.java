@@ -85,5 +85,10 @@ public interface CellInterface extends Iterable<Card>{
      * @return last card in the list.
      */
     public Card get();
+    
+	/**
+	 * Clears the cards list for a cell.
+	 */
+    public void clear();
 
 }
